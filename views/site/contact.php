@@ -34,7 +34,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                     Overview
                                 </div>
                                 <div class="grid-flex grid-justify-center menu-item" data-index="1">
-                                    Reports
+                                    Reports a
                                 </div>
                             </div>
                         </div>
