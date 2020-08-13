@@ -1,0 +1,190 @@
+/*TODO: clean it all up, finish flex, add aesthetics, icons, redefine to be relative to vh-vw, maybe rework v2 variant using scss and frames and real transitions? */
+.infocardContainer * {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-weight: 300;
+}
+h2 {
+    font-weight: 600; font-style: italic; font-family: "Fira Sans Condensed", sans-serif;
+}
+header {
+    height: 2em;
+    background-color: #111122;
+    margin: 0 0 0 0;
+    padding: auto;
+    font-size: 2em;
+    text-align: center;
+    line-height: 2em;
+    color: white;
+}
+
+.infocardContainer {
+    display: flex;
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+    /*background: rgb(0,159,255);*/
+    /*background: linear-gradient(121deg, rgba(255,255,255,0) 13%, rgba(0,159,255,1) 100%);*/
+    /*background: #0f0f0f;*/
+    background: linear-gradient(285deg, #C7A08A, #D4C6AF);
+
+    transition: all 500ms ease-in;
+    transition-delay: 1s;
+    margin: auto;
+    margin-top: 20px;
+    --margin-top: 100px;
+}
+.infocardContainer:hover {
+    width: 450px;
+    border-radius: 100px 100px 100px 100px;
+    transition: all .5s ease-out;
+}
+
+.infocardContainer div {
+    text-color: white;
+    flex-shrink: 1;
+    width: 100%;
+    --background-color: green;
+}
+.infocardContainer div * {
+    display: flex;
+    --flex: inherit;
+    /*overflow: hidden;*/
+    text-overflow: hidden;
+    --background-color: yellow;
+    color: white;
+    white-space: nowrap;
+    width: 0;
+    height: auto;
+    transition: all 450ms ease-in;
+    transition-delay: 1s;
+}
+.infocardContainer:hover div *{
+    --background-color: purple;
+    display: flex;
+    visibility: visible;
+    transition: all .5s ease-out;
+    transition-delay: 500ms;
+    width: 100%;
+    height: auto;
+}
+
+.infocardContainer #main, .infocardContainer #main img{
+    --background-color: red;
+    height: 200px;
+    width: 200px;
+    padding-right: 10px;
+    border-radius: 100%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+.infocardContainer #main img{
+    height: 180px;
+    width: 180px;
+    transition: none;
+    display: float;
+    position: relative;
+    border: 10px solid white;
+    margin: 0 0 0 0; padding: 0 0 0 0;
+}
+.infocardContainer #textbois {
+    position: relative;
+}
+.infocardContainer #textbois #hotlinks {
+    max-width: 60%;
+    max-height: 30px;
+
+    --background-color: white;
+    position:absolute;
+    bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 13px;
+}
+.infocardContainer #textbois #hotlinks * {
+    background-color: white;
+    max-width: 30px;
+    --margin: 0 1px 0 1px;
+    border-radius: 25px;
+}
+/*TODO: animate copy main transition style for info*/
+.infocardContainer #textbois #hotlinks *:hover {
+
+
+}
+
+.none-sum{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.none-sum > div{
+    width: 50%;
+}
+
+.infocardContainer #textbois .tags {
+    /*margin:0;*/
+    /*padding:0;*/
+    width: 100px;
+    position:absolute;
+    /*right:-200px;*/
+    bottom: 50%;
+    list-style:none;
+}
+.infocardContainer #textbois .tags li, .tags a {
+    float:left;
+    height:50px;
+    line-height:24px;
+    position:relative;
+    font-size:20px;
+}
+.infocardContainer #textbois .tags a {
+    margin-left:20px;
+    padding:0 25px 0 12px;
+    background:#0089e0;
+    color:#fff;
+    text-decoration:none;
+    -moz-border-radius-bottomright:2px;
+    -webkit-border-bottom-right-radius:2px;
+    border-bottom-right-radius:2px;
+    -moz-border-radius-topright:2px;
+    -webkit-border-top-right-radius:2px;
+    border-top-right-radius:2px;
+
+    -webkit-box-shadow: 1px 3px 3px 1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 1px 3px 3px 1px rgba(0,0,0,0.2);
+    box-shadow: 1px 3px 3px 1px rgba(0,0,0,0.2);
+}
+.infocardContainer #textbois .tags a:before {
+    content:"";
+    float:left;
+    position:absolute;
+    top:0;
+    right:-12px;
+    width:0;
+    height:0;
+    border-color: #0089e0  transparent  #0089e0 transparent;
+    border-style:solid;
+    border-width:12px 12px 12px 0;
+}
+.infocardContainer #textbois .tags a:after {
+    content:"";
+    position:absolute;
+    top:10px;
+    right:5px;
+    float:left;
+    width:4px;
+    height:4px;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    border-radius:2px;
+    background:#fff;
+    -moz-box-shadow:-1px -1px 2px #004977;
+    -webkit-box-shadow:-1px -1px 2px #004977;
+    box-shadow:-1px -1px 2px #004977;
+}
+.infocardContainer #textbois .tags a:hover {
+    background:#888;
+}
+.infocardContainer #textbois .tags a:hover:before {
+    border-color: #888 transparent #888 transparent;
+}
