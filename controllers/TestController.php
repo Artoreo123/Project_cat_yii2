@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Order;
+use app\models\OrderDetail;
 use Yii;
 use app\models\Test;
 use app\models\search\TestSearch;
@@ -132,8 +133,14 @@ class TestController extends Controller
 
 //        //command SQL
 //        yii::$app->db->createCommand([])->queryAll();
-        $data = Order::find()->innerJoin('user','order.user_id = user.id')->asArray()->all();
-        return Json::encode($data);
+//        $data = Order::find()->innerJoin('user','order.user_id = user.id')->asArray()->all();
+        $datenow = date("Y-m-d");
+        $threads = OrderDetail::find()->select(['sum(price)'])
+            ->from('orderdetail')
+            ->join('INNER JOIN', 'cat', 'orderdetail.cat_id = cat.id')
+            ->where(['orderdetail.created_at' => $datenow])
+            ->all();
+        return Json::encode($threads);
 
     }
     public function actionShowData($id)

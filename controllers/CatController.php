@@ -227,7 +227,6 @@ class CatController extends Controller
             } else {
                 array_push($temp, $id);
                 $session['cart'] = $temp;
-
             }
 
             $session->close();

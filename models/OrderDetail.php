@@ -34,11 +34,10 @@ class OrderDetail extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'order_id', 'cat_id'], 'required'],
-            [['id', 'create_by', 'order_id', 'cat_id'], 'integer'],
+            [[ 'order_id', 'cat_id'], 'required'],
+            [['id', 'created_by', 'order_id', 'cat_id'], 'integer'],
             [['status'], 'string'],
             [['created_at'], 'safe'],
-            [['order_detailcol'], 'string', 'max' => 45],
             [['id', 'order_id', 'cat_id'], 'unique', 'targetAttribute' => ['id', 'order_id', 'cat_id']],
             [['cat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cat::className(), 'targetAttribute' => ['cat_id' => 'id']],
             [['order_id'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['order_id' => 'id']],
@@ -54,8 +53,7 @@ class OrderDetail extends \yii\db\ActiveRecord
             'id' => 'ID',
             'status' => 'Status',
             'created_at' => 'Created At',
-            'create_by' => 'Create By',
-            'order_detailcol' => 'Order Detailcol',
+            'created_by' => 'Created By',
             'order_id' => 'Order ID',
             'cat_id' => 'Cat ID',
         ];

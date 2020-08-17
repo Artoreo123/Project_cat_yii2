@@ -311,6 +311,7 @@
     font-weight: 600;
 }
 .fake-checkbox{
+    /*transition-duration: 1s;*/
     width: 24px;
     height: 12px;
     border-radius: 5px;
@@ -320,6 +321,7 @@
     cursor: pointer;
 }
 .fake-checkbox.open-checkpoint {
+    /*transition-duration: 1s;*/
     justify-content: start;
     /*background: #f0f0f1;*/
     background: var(--bgarea1);
@@ -329,6 +331,7 @@
     height: 12px;
     border-radius: 50%;
     background: #abdbdd;
+    /*transition-duration: 2s;*/
 }
 .circle-arrow-design{
     width: 25px;
@@ -594,4 +597,45 @@
 }
 .header-color-div{
     color: #c5c5c5;
+    font-size: 13px;
+}
+.text-money{
+    padding-top: 0.75rem;
+    padding-left: 0.75rem;
+    font-size: 18px;
+}
+.div-icon-arrow-up-report{
+    font-size: 12px;
+    color: #1fcf6a;
+    animation: slide1 1s ease-in-out infinite;
+}
+.icon-hold-usd{
+    position: absolute;
+    /*top: -16px;*/
+    /*right: 2px;*/
+    /*font-size: 107px;*/
+    top: -13px;
+    right: 5px;
+    font-size: 92px;
+    color: #c5c5c526;
+}
+.icon-benefit{
+    position: absolute;
+    top: -16px;
+    right: 2px;
+    font-size: 97px;
+    color: #c5c5c526;
+
+
+}
+/*slide arrow up*/
+@keyframes slide1 {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(0, 5px);
+    }
 }
