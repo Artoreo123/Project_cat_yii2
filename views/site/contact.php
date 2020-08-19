@@ -11,8 +11,8 @@ use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 use yii\web\JqueryAsset;
 
-//$this->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css', ['depends' => [JqueryAsset::className()]]);
 
+//$this->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css', ['depends' => [JqueryAsset::className()]]);
 //$this->registerCssFile('https://use.fontawesome.com/releases/v5.13.0/css/all.css', ['depends' => [JqueryAsset::className()]]);
 
 $this->registerCssFile('@web/css/grid.css', ['depends' => [JqueryAsset::className()]]);
@@ -164,7 +164,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                             <div class="img-building grid-width-100 grid-height-100">
                                                 <div class="circle-arrow grid-flex grid-align-center grid-justify-center">
                                                     <i class="fa fa-arrow-up" aria-hidden="true"
-                                                       style="transform: rotate(41deg);"></i>
+                                                       style="color:#c5d7dc;transform: rotate(41deg);"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -424,7 +424,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                                             Today's earning
                                                         </div>
                                                         <div class="text-money grid-flex grid-justify-between">
-                                                            <?php echo "฿ ".number_format($today_earning,2)?>
+<!--                                                            echo "฿ ".number_format($today_earning,2)-->
                                                             <div class="icon-hold-usd">
                                                                 <!--                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>-->
                                                                 <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
@@ -436,7 +436,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                                             Benefit
                                                         </div>
                                                         <div class="text-money grid-flex grid-justify-between">
-                                                            <?php echo "฿ ".number_format(($today_earning * 30)/100,2)." (30%)" ?>
+<!--                                                             "฿ ".number_format(($today_earning * 30)/100,2)." (30%)" -->
                                                             <div class="div-icon-arrow-up-report">
                                                                 <i class="fa fa-arrow-up" aria-hidden="true"></i>
                                                             </div>
@@ -448,7 +448,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                                     </div>
                                                 </div>
                                                 <div class="grid-flex mt-1">
-                                                    <canvas id="line-chart-daily" class="bg-charts grid-flex-1" width="100%" height="78%"></canvas>
+                                                    <canvas id="line-chart-today" class="bg-charts grid-flex-1" width="100%" height="78%"></canvas>
                                                 </div>
 
                                             </div>
@@ -461,12 +461,12 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                                             Cat sold
                                                         </div>
                                                         <div class="text-money">
-                                                            <?php echo $cat_sold_day?>
+<!--                                                             echo $cat_sold_day-->
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="grid-flex mt-1">
-                                                    <canvas id="doughnut-chart-daily" class="bg-charts" width="100%" height="157"></canvas>
+                                                    <canvas id="doughnut-chart-today" class="bg-charts" width="100%" height="157"></canvas>
                                                     <div class="test-text" style="position: absolute;right: 10px;left: 10px">
 
                                                     </div>
@@ -487,7 +487,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                                             Today's earning
                                                         </div>
                                                         <div class="text-money grid-flex grid-justify-between">
-                                                            <?php echo "฿ ".number_format($month_earning,2)?>
+<!--                                                            echo "฿ ".number_format($month_earning,2)-->
                                                             <div class="icon-hold-usd">
                                                                 <!--                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>-->
                                                                 <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
@@ -499,7 +499,71 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                                             Benefit
                                                         </div>
                                                         <div class="text-money grid-flex grid-justify-between">
-                                                            <?php echo "฿ ".number_format(($month_earning * 30)/100,2)." (30%)" ?>
+<!--                                                            echo "฿ ".number_format(($month_earning * 30)/100,2)." (30%)" -->
+                                                            <div class="div-icon-arrow-up-report">
+                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                                                            </div>
+                                                            <!--                                                            <div class="icon-benefit">-->
+                                                            <!--                                                                <i class="fas fa-chart-line"></i>-->
+                                                            <!--                                                            </div>-->
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="grid-flex mt-1">
+                                                    <canvas id="line-chart-daily" class="bg-charts grid-flex-1" width="100%" height="78%"></canvas>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="grid-flex-1">
+                                            <div class="grid-flex grid-col">
+                                                <div class="grid-flex">
+                                                    <div class="graph-earning grid-flex-1 p-1 pl-2">
+                                                        <div class="header-color-div">
+                                                            Cat sold
+                                                        </div>
+                                                        <div class="text-money">
+<!--                                                             echo $cat_sold_month-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="grid-flex mt-1">
+                                                    <canvas id="doughnut-chart-daily" class="bg-charts" width="100%" height="157"></canvas>
+                                                    <div class="test-text" style="position: absolute;right: 10px;left: 10px">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--            small menu 3 -->
+                                <div class="switch-tab-content-small grid-flex grid-col">
+
+                                    <div class="grid-flex grid-width-100 pt-2 pr-2">
+                                        <div class="grid-flex-2 mr-2">
+                                            <div class="grid-flex grid-col">
+                                                <div class="grid-flex">
+                                                    <div class="graph-earning grid-flex-1 mr-1 p-1 pr-2 pl-2" style="position: relative"> <!--                 1 -->
+                                                        <div class="header-color-div">
+                                                            Today's earning
+                                                        </div>
+                                                        <div class="text-money grid-flex grid-justify-between">
+<!--                                                             echo "฿ ".number_format($year_earning,2)-->
+                                                            <div class="icon-hold-usd">
+                                                                <!--                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>-->
+                                                                <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="graph-earning grid-flex-1 p-1 pr-2 pl-2" style="position: relative">
+                                                        <div class="header-color-div">
+                                                            Benefit
+                                                        </div>
+                                                        <div class="text-money grid-flex grid-justify-between">
+<!--                                                             echo "฿ ".number_format(($year_earning * 30)/100,2)." (30%)" -->
                                                             <div class="div-icon-arrow-up-report">
                                                                 <i class="fa fa-arrow-up" aria-hidden="true"></i>
                                                             </div>
@@ -525,7 +589,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                                             Cat sold
                                                         </div>
                                                         <div class="text-money">
-                                                            <?php echo $cat_sold_month?>
+<!--                                                             echo $cat_sold_year-->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -539,7 +603,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                         </div>
                                     </div>
                                 </div>
-                                <!--            small menu 3 -->
+                                <!--            small menu 4 -->
                                 <div class="switch-tab-content-small grid-flex grid-col">
 
                                     <div class="grid-flex grid-width-100 pt-2 pr-2">
@@ -551,7 +615,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                                             Today's earning
                                                         </div>
                                                         <div class="text-money grid-flex grid-justify-between">
-                                                            <?php echo "฿ ".number_format($year_earning,2)?>
+<!--                                                             echo "฿ ".number_format($total_earning,2)-->
                                                             <div class="icon-hold-usd">
                                                                 <!--                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>-->
                                                                 <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
@@ -563,7 +627,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                                             Benefit
                                                         </div>
                                                         <div class="text-money grid-flex grid-justify-between">
-                                                            <?php echo "฿ ".number_format(($year_earning * 30)/100,2)." (30%)" ?>
+<!--                                                             echo "฿ ".number_format(($total_earning * 30)/100,2)." (30%)" -->
                                                             <div class="div-icon-arrow-up-report">
                                                                 <i class="fa fa-arrow-up" aria-hidden="true"></i>
                                                             </div>
@@ -589,76 +653,12 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                                             Cat sold
                                                         </div>
                                                         <div class="text-money">
-                                                            <?php echo $cat_sold_year?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="grid-flex mt-1">
-                                                    <canvas id="doughnut-chart-yearly" class="bg-charts" width="100%" height="157"></canvas>
-                                                    <div class="test-text" style="position: absolute;right: 10px;left: 10px">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--            small menu 4 -->
-                                <div class="switch-tab-content-small grid-flex grid-col">
-
-                                    <div class="grid-flex grid-width-100 pt-2 pr-2">
-                                        <div class="grid-flex-2 mr-2">
-                                            <div class="grid-flex grid-col">
-                                                <div class="grid-flex">
-                                                    <div class="graph-earning grid-flex-1 mr-1 p-1 pr-2 pl-2" style="position: relative"> <!--                 1 -->
-                                                        <div class="header-color-div">
-                                                            Today's earning
-                                                        </div>
-                                                        <div class="text-money grid-flex grid-justify-between">
-                                                            <?php echo "฿ ".number_format($total_earning,2)?>
-                                                            <div class="icon-hold-usd">
-                                                                <!--                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>-->
-                                                                <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="graph-earning grid-flex-1 p-1 pr-2 pl-2" style="position: relative">
-                                                        <div class="header-color-div">
-                                                            Benefit
-                                                        </div>
-                                                        <div class="text-money grid-flex grid-justify-between">
-                                                            <?php echo "฿ ".number_format(($total_earning * 30)/100,2)." (30%)" ?>
-                                                            <div class="div-icon-arrow-up-report">
-                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>
-                                                            </div>
-                                                            <!--                                                            <div class="icon-benefit">-->
-                                                            <!--                                                                <i class="fas fa-chart-line"></i>-->
-                                                            <!--                                                            </div>-->
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
-                                                <div class="grid-flex mt-1">
-                                                    <canvas id="line-chart-totally" class="bg-charts grid-flex-1" width="100%" height="78%"></canvas>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="grid-flex-1">
-                                            <div class="grid-flex grid-col">
-                                                <div class="grid-flex">
-                                                    <div class="graph-earning grid-flex-1 p-1 pl-2">
-                                                        <div class="header-color-div">
-                                                            Cat sold
-                                                        </div>
-                                                        <div class="text-money">
-                                                            <?php echo $cat_sold_total?>
+<!--                                                             echo $cat_sold_total-->
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="grid-flex mt-1" style="position: relative">
-                                                    <canvas id="doughnut-chart-totally" class="bg-charts" width="100%" height="157"></canvas>
+                                                    <canvas id="doughnut-chart-yearly" class="bg-charts" width="100%" height="157"></canvas>
 <!--                                                    <div class="test-text" style="position: absolute;right: 10px;left: 10px">-->
 <!--                                                        aa-->
 <!--                                                    </div>-->
@@ -918,20 +918,8 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
         let data_index_small_menu_report = $(this).attr('data-index-small-menu-report');
         $('.menu-dashboard-report').removeClass('menu-active');
         $(this).addClass('menu-active');
-        handleOnSwicthTabSmallMenu(data_index_small_menu_report );
+        handleOnSwicthTabSmallMenu(data_index_small_menu_report);
     })
-
-    //color chart LinearGradient
-    var ctx1 = document.getElementById("line-chart-daily").getContext("2d");
-
-    var gradientFillCat = ctx1.createLinearGradient(0, 0, 0, 300);
-    gradientFillCat.addColorStop(0, "rgba(255,166,43,0.98)");
-    gradientFillCat.addColorStop(1, "rgba(255, 255, 255, 0)");
-
-    var gradientFillOrder = ctx1.createLinearGradient(0, 0, 0, 300);
-    gradientFillOrder.addColorStop(0, "#16697afa");
-    gradientFillOrder.addColorStop(1, "rgba(255, 255, 255, 0)");
-
     //today
     var today = new Date();
     var dd = today.getDate();
@@ -945,18 +933,112 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
     }
     today = dd + '/' + mm + '/' + yyyy;
 
+    // DataGraph
+    var dataOrder = '<?= $dataOrder ?>'
+
+    const dataForYear = function(data) {
+        let returnLabelYear = []
+        let returnDataOrderYear = []
+        let returnDataCatYear = []
+
+        if (data) {
+            Object.keys(data).forEach(function (item, key) {
+                returnLabelYear.push(item) // label year
+                let cat_amount_year = 0
+                let order_amount_year = 0
+                Object.keys(data[item]).forEach(function (itemMonth, key) {
+                    Object.keys(data[item][itemMonth]).forEach(function (itemDay, key) {
+
+                        cat_amount_year += parseInt(data[item][itemMonth][itemDay].amount_cat)
+                        order_amount_year += parseInt(data[item][itemMonth][itemDay].amount_order)
+                    })
+                })
+                // returnDatasetYear.push([order_amount_year,cat_amount_year])
+                returnDataOrderYear.push(order_amount_year)
+                returnDataCatYear.push(cat_amount_year)
+            })
+        }
+        return {label_year: returnLabelYear, Order_year: returnDataOrderYear , Cat_year: returnDataCatYear}
+    }
+
+    const dataForMonth = function(data) {
+        let returnLabelMonth = []
+        let returnDataOrderMonth = []
+        let returnDataCatMonth = []
+        if (data) {
+            Object.keys(data).forEach(function (item, key) {
+                Object.keys(data[item]).forEach(function (itemMonth, key) {
+                    returnLabelMonth.push(itemMonth) // label year
+                    let cat_amount_Month = 0
+                    let order_amount_Month = 0
+                    Object.keys(data[item][itemMonth]).forEach(function (itemDay, key) {
+                        cat_amount_Month += parseInt(data[item][itemMonth][itemDay].amount_cat)
+                        order_amount_Month += parseInt(data[item][itemMonth][itemDay].amount_order)
+                    })
+                    returnDataOrderMonth.push(order_amount_Month)
+                    returnDataCatMonth.push(cat_amount_Month)
+                })
+
+            })
+        }
+        return {label_month: returnLabelMonth, Order_month: returnDataOrderMonth , Cat_month: returnDataCatMonth}
+    }
+
+    const dataForDay = function(data) {
+        let returnDataLabelDay = []
+        let returnDataOrderDay = []
+        let returnDataCatDay = []
+
+            Object.keys(data[yyyy][mm]).forEach(function (itemDay, key) {
+                let cat_amount_Day = 0
+                let order_amount_Day = 0
+
+                returnDataLabelDay.push(data[yyyy][mm][itemDay].text_date) // label day
+                console.log(returnDataLabelDay)
+                returnDataOrderDay.push(parseInt(data[yyyy][mm][itemDay].amount_order))
+                returnDataCatDay.push(parseInt(data[yyyy][mm][itemDay].amount_order))
+            })
+
+        return {label_day: returnDataLabelDay, Order_day: returnDataOrderDay , Cat_day:returnDataCatDay}
+    }
+    const dataForToday = function(data) {
+        let returnDataLabelToday = []
+        let returnDataOrderToday = []
+        let returnDataCatToday = []
+        returnDataLabelToday.push(today) // label today
+        return {label_today: returnDataLabelToday, Order_today: returnDataOrderToday , Cat_today: returnDataCatToday}
+    }
+
+    let dataJson = JSON.parse(dataOrder)
+    var dataYear = dataForYear(dataJson);
+    var dataMonth = dataForMonth(dataJson);
+    var dataDay = dataForDay(dataJson);
+    var dataToday = dataForToday(dataJson);
+    console.log(dataDay.Cat_day)
+
+        //color chart LinearGradient
+    var ctx1 = document.getElementById("line-chart-today").getContext("2d");
+
+    var gradientFillCat = ctx1.createLinearGradient(0, 0, 0, 300);
+    gradientFillCat.addColorStop(0, "rgba(255,166,43,0.98)");
+    gradientFillCat.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+    var gradientFillOrder = ctx1.createLinearGradient(0, 0, 0, 300);
+    gradientFillOrder.addColorStop(0, "#16697afa");
+    gradientFillOrder.addColorStop(1, "rgba(255, 255, 255, 0)");
+
     // chart daily main graph
-    new Chart(document.getElementById("line-chart-daily"), {
+    new Chart(document.getElementById("line-chart-today"), {
         type: 'bar',
         data: {
             labels:
-            [today]
+            dataToday.label_today
             ,
             datasets: [{
                 label: "Order",
-                data:
-                <?php echo $amount_order_today?>
-                ,
+                data: [0],
+                //echo $amount_order_today
+
                 borderWidth: 3,
                 borderColor: "#16697a",
                 fill: true,
@@ -969,9 +1051,10 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                 lineTension: 0.3,
                 }, {
                     label: "Cat Sold",
-                    data:
-                <?php echo $amount_orderdt_today?>
-                    ,
+                    data:[0] ,
+                // echo $amount_orderdt_today?>
+
+
                     borderWidth: 3,
                     borderColor: "#ffa62b",
                     fill: true,
@@ -980,7 +1063,6 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                     pointBackgroundColor: '#ffffff',
                     pointRadius: 2,
                     pointHoverRadius: 5,
-
                     spanGaps: false,
                     }
             ]
@@ -1030,8 +1112,8 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
         }
     });
 
-    // doughnut chart daily
-    new Chart(document.getElementById("doughnut-chart-daily"), {
+    // doughnut chart today
+    new Chart(document.getElementById("doughnut-chart-today"), {
         type: 'doughnut',
         data: {
             datasets: [
@@ -1042,10 +1124,11 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                         "#02c39a",
                         "#f0f3bd",
                         "#cad2c5",],
-                    data:  <?php echo $count_type_cat_day ?>
+                    data:  [0]// echo $count_type_cat_day ?>
                 }
             ],
-            labels: <?php echo $type_cat_day ?>,
+            labels: ["0"]// echo $type_cat_day ?>
+             ,
         },
         options: {
             elements: {
@@ -1067,19 +1150,21 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
             },
         }
     });
-    //chart monthly
-    new Chart(document.getElementById("line-chart-monthly"), {
+    //chart daily
+    new Chart(document.getElementById("line-chart-daily"), {
         type: 'line',
         data: {
             labels:
             // [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
-            <?php echo $graphday; ?>
+            // echo $graphday; ?>
+                dataDay.label_day
             ,
             datasets: [{
                 label: "Order", // text legend
                 data:
                     // [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
-                <?php echo $amount_order_day?>
+                // echo $amount_order_day?>
+                dataDay.Order_day
                 ,
                 borderWidth: 3,
                 borderColor: "#16697a",
@@ -1095,7 +1180,8 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                 // label: "Sell Cat/Day",
                 label: "Cat Sold", // text legend
                 data:
-                <?php echo $amount_orderdt_day?>
+                // echo $amount_orderdt_day?>
+                dataDay.Cat_day
                 ,
                 borderWidth: 3,
                 borderColor: "#ffa62b",
@@ -1149,8 +1235,8 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
             responsive:true,
         }
     });
-    // doughnut chart monthly
-    new Chart(document.getElementById("doughnut-chart-monthly"), {
+    // doughnut chart daily
+    new Chart(document.getElementById("doughnut-chart-daily"), {
         type: 'doughnut',
         data: {
             datasets: [
@@ -1160,11 +1246,12 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                         "#00a896",
                         "#02c39a",
                         "#f0f3bd",
-                        "#cad2c5",],
-                    data: <?php echo $count_type_cat_month?>
+                        "#ffc16c",],
+                    data: [0]// echo $count_type_cat_month?>
                 }
             ],
-            labels: <?php echo $type_cat_month?>,
+            labels: ["0"]// echo $type_cat_month?>
+             ,
         },
         options: {
             title: {
@@ -1177,17 +1264,19 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
             },
         }
     });
-    // chart yearly
-    new Chart(document.getElementById("line-chart-yearly"), {
+    // chart monthly
+    new Chart(document.getElementById("line-chart-monthly"), {
         type: 'line',
         data: {
             labels:
-            <?php echo $graphmonth; ?>
+            // echo $graphmonth; ?>
+                dataMonth.label_month
             ,
             datasets: [{
                 label: "Order", // text legend
                 data:
-                <?php echo $amount_order_month?>
+                // echo $amount_order_month?>
+                    dataMonth.Order_month
                 ,
                 borderWidth: 3,
                 borderColor: "#16697a",
@@ -1202,7 +1291,8 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
             }, {
                 label: "Cat Sold",
                 data:
-                <?php echo $amount_orderdt_month?>
+                // echo $amount_orderdt_month?>
+                    dataMonth.Cat_month
                 ,
                 borderWidth: 3,
                 borderColor: "#ffa62b",
@@ -1258,8 +1348,8 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
         }
     });
 
-    // doughnut chart yearly
-    new Chart(document.getElementById("doughnut-chart-yearly"), {
+    // doughnut chart monthly
+    new Chart(document.getElementById("doughnut-chart-monthly"), {
         type: 'doughnut',
         data: {
             datasets: [
@@ -1271,10 +1361,11 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                         "#e5d358",
                         "#8ae755",
                         "#e253ba"],
-                    data: <?php echo $count_type_cat_year?>
+                    data: [0]// echo $count_type_cat_year?>
                 }
             ],
-            labels: <?php echo $type_cat_year?>,
+            labels: ["0"]// echo $type_cat_year?
+             ,
         },
         options: {
             elements: {
@@ -1296,17 +1387,17 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
             },
         }
     });
-    // chart total
-    new Chart(document.getElementById("line-chart-totally"), {
+    // chart yearly
+    new Chart(document.getElementById("line-chart-yearly"), {
         type: 'bar',
         data: {
             labels:
-            <?php echo $graphyear; ?>
+                dataYear.label_year// echo $graphyear; ?>
             ,
             datasets: [{
                 label: "Order", // text legend
                 data:
-                <?php echo $amount_order_year?>
+                    dataYear.Order_year // echo $amount_order_year?>
                 ,
                 borderWidth: 3,
                 borderColor: "#16697a",
@@ -1320,7 +1411,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
             }, {
                 label: "Cat Sold",
                 data:
-                <?php echo $amount_orderdt_year?>
+                    dataYear.Cat_year // echo $amount_orderdt_year?>
                 ,
                 borderWidth: 3,
                 borderColor: "#ffa62b",
@@ -1333,8 +1424,6 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                 // lineTension: 0,// line dont curve
                 spanGaps: false,
             }
-
-
             ]
         },
         options: {
@@ -1376,8 +1465,8 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
         }
     });
 
-    // doughnut chart totally
-    new Chart(document.getElementById("doughnut-chart-totally"), {
+    // doughnut chart yearly
+    new Chart(document.getElementById("doughnut-chart-yearly"), {
         type: 'doughnut',
         data: {
             datasets: [
@@ -1389,10 +1478,11 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                         "#e5d358",
                         "#8ae755",
                         "#e253ba"],
-                    data: <?php echo $count_type_cat_total?>
+                    data: [0]// echo $count_type_cat_total?>
                 }
             ],
-            labels: <?php echo $type_cat_total?>,
+            labels: ["0"]// echo $type_cat_total?>
+             ,
         },
         options: {
             elements: {

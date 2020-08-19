@@ -38,7 +38,9 @@ AppAsset::register($this);
     ?>
 
 </head>
-<body>
+<!--close view page source-->
+<body oncontextmenu="return false">
+
 <?php $this->beginBody() ?>
 
 <div class="wrap">
@@ -137,6 +139,7 @@ AppAsset::register($this);
             $(".mea-img").fadeOut();
         },1500);
     })
+
 </script>
 <?php JSRegister::end(); ?>
 </html>
