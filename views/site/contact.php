@@ -996,7 +996,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                 returnDataLabelDay.push(data[yyyy][mm][itemDay].text_date) // label day
                 console.log(returnDataLabelDay)
                 returnDataOrderDay.push(parseInt(data[yyyy][mm][itemDay].amount_order))
-                returnDataCatDay.push(parseInt(data[yyyy][mm][itemDay].amount_order))
+                returnDataCatDay.push(parseInt(data[yyyy][mm][itemDay].amount_cat))
             })
 
         return {label_day: returnDataLabelDay, Order_day: returnDataOrderDay , Cat_day:returnDataCatDay}
