@@ -122,11 +122,21 @@ class SiteController extends Controller
     public function actionContact()
     {
         $data = Order::allDataOrder();
+        $dataTypeCat = Order::getTypeCat();
+        $dataMoney = Order::getDataForSummaryRevenue();
+        $dataMoney = Json::encode($dataMoney);
+
+        $dataTypeCatV2 = Helper::convertDataTypeCat($dataTypeCat);
+        $dataTypeCatV2 = Json::encode($dataTypeCatV2);
+
         $dataConvert = Helper::convertData($data);
         $dataConvert = Json::encode($dataConvert);
+
 //        return $dataConvert;
         return $this->render('contact', [
             'dataOrder' => $dataConvert,
+            'dataTypeCat' => $dataTypeCatV2,
+            'dataMoney' => $dataMoney,
         ]);
     }
 

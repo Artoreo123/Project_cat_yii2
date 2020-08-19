@@ -59,8 +59,9 @@ class Order extends \yii\db\ActiveRecord
 //        Yii::$app->db->createCommand('');
         $dataOrder = Order::find()->select(['DATE_FORMAT([[date]], "%e") as day',
             'DATE_FORMAT([[date]], "%m") as month','DATE_FORMAT([[date]], "%Y") as year',
-            'count(order_detail.id) as amount_cat','count(distinct order.id) as amount_order','date as text_date'])
+            'count(order_detail.id) as amount_cat','count(distinct order.id) as amount_order','date as text_date','DATE_FORMAT([[date]], "%M") as text_month'])
             ->innerJoin( 'order_detail', 'order.id = order_detail.order_id')
+            ->innerJoin('cat','order_detail.cat_id = cat.id')
             ->groupBy('order.date')
             ->orderBy('order.date')
             ->asArray()
@@ -75,10 +76,10 @@ class Order extends \yii\db\ActiveRecord
             ->innerJoin('order_detail','order.id = order_detail.order_id')
             ->innerJoin('cat','order_detail.cat_id = cat.id')
             ->innerJoin('(
-                select `order`.`id` as id ,SUM(`cat`.`price`) as yearlyPrice, DATE_FORMAT(`order`.`date`, "%Y") as year from cat 
-                inner join order_detail on `order_detail`.`cat_id` = `cat`.`id` 
-                inner join order on `order`.`id` = `order_detail`.`order_id`
-                group by year
+                select `order`.`id` as id ,SUM(`cat`.`price`) as yearlyPrice, DATE_FORMAT(`order`.`date`, "%Y") as year  from cat 
+                inner join `order_detail` on `order_detail`.`cat_id` = `cat`.`id` 
+                inner join `order` on `order`.`id` = `order_detail`.`order_id`
+                group by `year`
             ) join_year', 'join_year.id = order.id')
 //            ->where(['order.payment_status' => '0'])
             ->groupBy(['year'])
@@ -92,8 +93,8 @@ class Order extends \yii\db\ActiveRecord
             ->innerJoin('cat','order_detail.cat_id = cat.id')
             ->innerJoin('(
                 select `order`.`id` as id ,SUM(`cat`.`price`) as monthlyPrice, DATE_FORMAT(`order`.`date`, "%M") as month from cat 
-                inner join order_detail on `order_detail`.`cat_id` = `cat`.`id` 
-                inner join order on `order`.`id` = `order_detail`.`order_id`
+                inner join `order_detail` on `order_detail`.`cat_id` = `cat`.`id` 
+                inner join `order` on `order`.`id` = `order_detail`.`order_id`
                 group by month
             ) join_month', 'join_month.id = order.id')
             ->groupBy(['month'])
@@ -107,8 +108,8 @@ class Order extends \yii\db\ActiveRecord
             ->innerJoin('cat','order_detail.cat_id = cat.id')
             ->innerJoin('(
                 select `order`.`id` as id, `order`.`date` ,SUM(`cat`.`price`) as dailyPrice, DATE_FORMAT(`order`.`date`, "%d") as day from cat 
-                inner join order_detail on `order_detail`.`cat_id` = `cat`.`id` 
-                inner join order on `order`.`id` = `order_detail`.`order_id`
+                inner join `order_detail` on `order_detail`.`cat_id` = `cat`.`id` 
+                inner join `order` on `order`.`id` = `order_detail`.`order_id`
                 group by `order`.`date`
             ) join_day', 'join_day.id = order.id')
             ->orderBy('year, month, day')
@@ -116,6 +117,29 @@ class Order extends \yii\db\ActiveRecord
             ->asArray()->all();
 
         return ['yearly'=> $dataY, 'monthly' => $dataM, 'daily'=>$dataD];
+    }
+    public static function getTypeCat(){
+        $datenow = date('Y-m-d');
+        $monthnow = date('m');
+        $yearnow = date('Y');
+
+        $dataTypeCat = Order::find()->select(['DATE_FORMAT([[date]], "%e") as day',
+            'DATE_FORMAT([[date]], "%m") as month','DATE_FORMAT([[date]], "%Y") as year','cat.type as breed','count(order_detail.id) as countBreedCat'])
+            ->innerJoin( 'order_detail', 'order.id = order_detail.order_id')
+            ->innerJoin('cat','order_detail.cat_id = cat.id')
+            ->groupBy('order.date,cat.type')
+            ->orderBy('order.date')
+            ->asArray()->all();
+
+//        $dataTypeCat = Order::find()
+//        ->select(['cat.type as breedMonth','count(order_detail.id) as countTypeCatMonth'])
+//            ->innerJoin('order_detail','order.id = order_detail.order_id')
+//            ->innerJoin('cat','order_detail.cat_id = cat.id')
+//            ->where(['Month(created_at)' => $monthnow])
+//            ->groupBy(['cat.type'])
+//            ->asArray()->all();
+
+        return $dataTypeCat;
     }
 
     /**

@@ -1,6 +1,8 @@
 <?php
 namespace app\Helper;
 
+use phpDocumentor\Reflection\Types\Integer;
+
 class Helper
 {
 
@@ -19,6 +21,15 @@ class Helper
         {
             $date = strtotime("$date");
             return date("d M Y",$date);
+        }
+        return "-";
+    }
+    public static function changeDateMonth($date)
+    {
+        if ($date)
+        {
+            $date = strtotime("$date");
+            return date("M",$date);
         }
         return "-";
     }
@@ -47,13 +58,22 @@ class Helper
         return "-";
     }
     public static function convertData($data){
+        $array = [];
+        foreach($data as $item){
+//            $array[$item['year']][$item['month']] = ['text_month'=>$item['text_month']];
+            $array[$item['year']][$item['month']][$item['day']] = ['amount_cat' => $item['amount_cat'],'amount_order' => $item['amount_order'],
+                'text_date' => self::changeDateFormatFull($item['text_date']),'text_month'=>$item['text_month']];
+
+        }
+        return $array;
+    }
+    public static function convertDataTypeCat($data){
 
         $array = [];
         foreach($data as $item){
-            $array[$item['year']][$item['month']][$item['day']] = ['amount_cat' => $item['amount_cat'],'amount_order' => $item['amount_order'],'text_date' => self::changeDateFormatFull($item['text_date'])];
+            $array[$item['year']][$item['month']][$item['day']][$item['breed']] = ['countBreedCat' => $item['countBreedCat']];
         }
         return $array;
-
     }
 
 }

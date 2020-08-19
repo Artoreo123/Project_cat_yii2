@@ -396,16 +396,16 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                         <div class="grid-flex grid-width-100 grid-align-center pt-1 pr-2">
                             <div class="grid-flex grid-align-center grid-justify-start grid-height-100">
                                 <div class="grid-flex grid-justify-center menu-dashboard-report menu-dashboard-report-first menu-active" data-index-small-menu-report ="0">
-                                    Daily
+                                    Today
                                 </div>
                                 <div class="grid-flex grid-justify-center menu-dashboard-report" data-index-small-menu-report ="1">
-                                    Monthly
+                                    Daily
                                 </div>
                                 <div class="grid-flex grid-justify-center menu-dashboard-report" data-index-small-menu-report ="2">
-                                    Yearly
+                                    Monthly
                                 </div>
                                 <div class="grid-flex grid-justify-center menu-dashboard-report" data-index-small-menu-report ="3">
-                                    Totally
+                                    Yearly
                                 </div>
                             </div>
                         </div>
@@ -447,8 +447,11 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="grid-flex mt-1">
-                                                    <canvas id="line-chart-today" class="bg-charts grid-flex-1" width="100%" height="78%"></canvas>
+                                                <div class="line-chart-today grid-flex mt-1" style="position: relative">
+                                                    <canvas id="line-chart-today" class="bg-charts grid-flex-1" width="100%" height="78%" ></canvas>
+                                                    <div class="line-chart-today-text" style="position: absolute;right: 10px;left: 10px">
+
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -465,9 +468,9 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="grid-flex mt-1">
+                                                <div class="grid-flex mt-1" style="position: relative;display: flex;justify-content: center;align-items: center">
                                                     <canvas id="doughnut-chart-today" class="bg-charts" width="100%" height="157"></canvas>
-                                                    <div class="test-text" style="position: absolute;right: 10px;left: 10px">
+                                                    <div class="doughnut-chart-today-text" style="position: absolute;">
 
                                                     </div>
                                                 </div>
@@ -484,7 +487,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                                 <div class="grid-flex">
                                                     <div class="graph-earning grid-flex-1 mr-1 p-1 pr-2 pl-2" style="position: relative"> <!--                 1 -->
                                                         <div class="header-color-div">
-                                                            Today's earning
+                                                            Day's earning
                                                         </div>
                                                         <div class="text-money grid-flex grid-justify-between">
 <!--                                                            echo "฿ ".number_format($month_earning,2)-->
@@ -548,7 +551,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                                 <div class="grid-flex">
                                                     <div class="graph-earning grid-flex-1 mr-1 p-1 pr-2 pl-2" style="position: relative"> <!--                 1 -->
                                                         <div class="header-color-div">
-                                                            Today's earning
+                                                            Month's earning
                                                         </div>
                                                         <div class="text-money grid-flex grid-justify-between">
 <!--                                                             echo "฿ ".number_format($year_earning,2)-->
@@ -612,7 +615,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                                 <div class="grid-flex">
                                                     <div class="graph-earning grid-flex-1 mr-1 p-1 pr-2 pl-2" style="position: relative"> <!--                 1 -->
                                                         <div class="header-color-div">
-                                                            Today's earning
+                                                            Year's earning
                                                         </div>
                                                         <div class="text-money grid-flex grid-justify-between">
 <!--                                                             echo "฿ ".number_format($total_earning,2)-->
@@ -925,9 +928,9 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
     var dd = today.getDate();
     var mm = today.getMonth()+1;
     var yyyy = today.getFullYear();
-    if (dd < 10) {
-        dd = '0' + dd;
-    }
+    // if (dd < 10) {
+    //     dd = '0' + dd;
+    // }
     if (mm < 10) {
         mm = '0' + mm;
     }
@@ -935,13 +938,22 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
 
     // DataGraph
     var dataOrder = '<?= $dataOrder ?>'
+    var alldataTypeCat = '<?= $dataTypeCat ?>'
+    var dataMoney = '<?= $dataMoney ?>'
 
-    const dataForYear = function(data) {
+    let dataJson = JSON.parse(dataOrder)
+    let dataJsonTypeCat = JSON.parse(alldataTypeCat)
+    let dataJsonMoneyCat = JSON.parse(dataMoney)
+
+    // const moneyCat = dataJsonMoneyCat.filter(function (dataJsonMoneyCat) {
+    //
+    // })
+    const dataForYearly = function(data) {
         let returnLabelYear = []
         let returnDataOrderYear = []
         let returnDataCatYear = []
 
-        if (data) {
+        // if (data) {
             Object.keys(data).forEach(function (item, key) {
                 returnLabelYear.push(item) // label year
                 let cat_amount_year = 0
@@ -957,47 +969,49 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                 returnDataOrderYear.push(order_amount_year)
                 returnDataCatYear.push(cat_amount_year)
             })
-        }
+        // }
         return {label_year: returnLabelYear, Order_year: returnDataOrderYear , Cat_year: returnDataCatYear}
     }
 
-    const dataForMonth = function(data) {
+    const dataForMonthly = function(data) {
         let returnLabelMonth = []
         let returnDataOrderMonth = []
         let returnDataCatMonth = []
-        if (data) {
+        // if (data) {
             Object.keys(data).forEach(function (item, key) {
                 Object.keys(data[item]).forEach(function (itemMonth, key) {
-                    returnLabelMonth.push(itemMonth) // label year
+                    // returnLabelMonth.push(itemMonth) // label year
                     let cat_amount_Month = 0
                     let order_amount_Month = 0
                     Object.keys(data[item][itemMonth]).forEach(function (itemDay, key) {
                         cat_amount_Month += parseInt(data[item][itemMonth][itemDay].amount_cat)
                         order_amount_Month += parseInt(data[item][itemMonth][itemDay].amount_order)
+                        if (returnLabelMonth.indexOf(data[item][itemMonth][itemDay].text_month) == -1){ // ถ้ายังไม่มีข้อมูลเหมือนตัวที่ส่งเข้าไปใน array indexOf จะส่งค่า -1 กลับมา
+                            returnLabelMonth.push(data[item][itemMonth][itemDay].text_month);
+                        }
                     })
                     returnDataOrderMonth.push(order_amount_Month)
                     returnDataCatMonth.push(cat_amount_Month)
                 })
 
             })
-        }
+        // }
         return {label_month: returnLabelMonth, Order_month: returnDataOrderMonth , Cat_month: returnDataCatMonth}
     }
 
-    const dataForDay = function(data) {
+    const dataForDaily = function(data) {
         let returnDataLabelDay = []
         let returnDataOrderDay = []
         let returnDataCatDay = []
 
-            Object.keys(data[yyyy][mm]).forEach(function (itemDay, key) {
-                let cat_amount_Day = 0
-                let order_amount_Day = 0
+        Object.keys(data[yyyy][mm]).forEach(function (itemDay, key) {
+            let cat_amount_Day = 0
+            let order_amount_Day = 0
 
-                returnDataLabelDay.push(data[yyyy][mm][itemDay].text_date) // label day
-                console.log(returnDataLabelDay)
-                returnDataOrderDay.push(parseInt(data[yyyy][mm][itemDay].amount_order))
-                returnDataCatDay.push(parseInt(data[yyyy][mm][itemDay].amount_cat))
-            })
+            returnDataLabelDay.push(data[yyyy][mm][itemDay].text_date) // label day
+            returnDataOrderDay.push(parseInt(data[yyyy][mm][itemDay].amount_order))
+            returnDataCatDay.push(parseInt(data[yyyy][mm][itemDay].amount_cat))
+        })
 
         return {label_day: returnDataLabelDay, Order_day: returnDataOrderDay , Cat_day:returnDataCatDay}
     }
@@ -1005,16 +1019,154 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
         let returnDataLabelToday = []
         let returnDataOrderToday = []
         let returnDataCatToday = []
-        returnDataLabelToday.push(today) // label today
+
+        returnDataLabelToday.push(today)
+        returnDataOrderToday.push((data[yyyy][mm][dd]) ? data[yyyy][mm][dd].amount_order : 0)
+        returnDataCatToday.push((data[yyyy][mm][dd]) ? data[yyyy][mm][dd].amount_cat : 0)
+
         return {label_today: returnDataLabelToday, Order_today: returnDataOrderToday , Cat_today: returnDataCatToday}
     }
 
-    let dataJson = JSON.parse(dataOrder)
-    var dataYear = dataForYear(dataJson);
-    var dataMonth = dataForMonth(dataJson);
-    var dataDay = dataForDay(dataJson);
+    // graph type cat
+
+    const typeCatYearly = function(datatypecat) {
+        let LabelTypeCatYear = []
+        let CountTypeCatYear = []
+        let FilterLabelTypeCatYear = []
+        var objYearly = {};
+
+        if (datatypecat) {
+            Object.keys(datatypecat).forEach(function (item, key) {
+                Object.keys(datatypecat[item]).forEach(function (itemMonth, key) {
+
+                    Object.keys(datatypecat[item][itemMonth]).forEach(function (itemDay, key) {
+
+                        Object.keys(datatypecat[item][itemMonth][itemDay]).forEach(function (itemTypeCat, value) {
+                            // name
+                            if (LabelTypeCatYear.indexOf(itemTypeCat) == -1){ // ถ้ายังไม่มีข้อมูลเหมือนตัวที่ส่งเข้าไปใน array indexOf จะส่งค่า -1 กลับมา
+                                LabelTypeCatYear.push(itemTypeCat);
+                            }
+                            // value
+                            if (objYearly.hasOwnProperty(itemTypeCat)) {
+                                objYearly[itemTypeCat] = objYearly[itemTypeCat] + parseInt(datatypecat[item][itemMonth][itemDay][itemTypeCat].countBreedCat);
+                            } else {
+                                objYearly[itemTypeCat] = parseInt(datatypecat[item][itemMonth][itemDay][itemTypeCat].countBreedCat);
+                            }
+                            CountTypeCatYear = []
+                            for (var prop in objYearly) {
+                                CountTypeCatYear.push(objYearly[prop]);
+                                // LabelTypeCatYear.push(prop);
+                            }
+                        })
+                    })
+                })
+            })
+        }
+        return {label_type_year: LabelTypeCatYear, count_type_cat_year: CountTypeCatYear }
+    }
+
+    const typeCatMonthly = function(datatypecat) {
+        let LabelTypeCatMonth = []
+        let CountTypeCatMonth = []
+
+        var objMonthly = {};
+
+        if (datatypecat) {
+            Object.keys(datatypecat[yyyy]).forEach(function (itemMonth, key) {
+
+                Object.keys(datatypecat[yyyy][itemMonth]).forEach(function (itemDay, key) {
+
+                    Object.keys(datatypecat[yyyy][itemMonth][itemDay]).forEach(function (itemTypeCat, value) {
+                        if (LabelTypeCatMonth.indexOf(itemTypeCat) == -1){ // ถ้ายังไม่มีข้อมูลเหมือนตัวที่ส่งเข้าไปใน array indexOf จะส่งค่า -1 กลับมา
+                            LabelTypeCatMonth.push(itemTypeCat);
+                        }
+                        // value
+                        if (objMonthly.hasOwnProperty(itemTypeCat)) {
+                            objMonthly[itemTypeCat] = objMonthly[itemTypeCat] + parseInt(datatypecat[yyyy][itemMonth][itemDay][itemTypeCat].countBreedCat);
+                        } else {
+                            objMonthly[itemTypeCat] = parseInt(datatypecat[yyyy][itemMonth][itemDay][itemTypeCat].countBreedCat);
+                        }
+                        CountTypeCatMonth = []
+                        for (var prop in objMonthly) {
+                            CountTypeCatMonth.push(objMonthly[prop]);
+                        }
+                    })
+                })
+            })
+        }
+        return {label_type_month: LabelTypeCatMonth , count_type_cat_month: CountTypeCatMonth }
+    }
+
+    const typeCatDaily = function(datatypecat) {
+        let LabelTypeCatDaily = []
+        let CountTypeCatDaily = []
+
+        var objDaily = {};
+        if (datatypecat) {
+            // Object.keys(datatypecat).forEach(function (item, key) {
+            // Object.keys(datatypecat[yyyy]).forEach(function (itemMonth, key) {
+                Object.keys(datatypecat[yyyy][mm]).forEach(function (itemDay, key) {
+
+                    Object.keys(datatypecat[yyyy][mm][itemDay]).forEach(function (itemTypeCat, value) {
+                        if (LabelTypeCatDaily.indexOf(itemTypeCat) == -1){ // ถ้ายังไม่มีข้อมูลเหมือนตัวที่ส่งเข้าไปใน array indexOf จะส่งค่า -1 กลับมา
+                            LabelTypeCatDaily.push(itemTypeCat);
+                        }
+                        // value
+                        if (objDaily.hasOwnProperty(itemTypeCat)) {
+                            objDaily[itemTypeCat] = objDaily[itemTypeCat] + parseInt(datatypecat[yyyy][mm][itemDay][itemTypeCat].countBreedCat);
+                        } else {
+                            objDaily[itemTypeCat] = parseInt(datatypecat[yyyy][mm][itemDay][itemTypeCat].countBreedCat);
+                        }
+                        CountTypeCatDaily = []
+                        for (var prop in objDaily) {
+                            CountTypeCatDaily.push(objDaily[prop]);
+                        }
+                    })
+                })
+            // })
+        }
+        return {label_type_Daily: LabelTypeCatDaily, count_type_cat_Daily: CountTypeCatDaily }
+    }
+
+    const typeCatToday = function(datatypecat) {
+        let LabelTypeCatToday = []
+        let CountTypeCatToday = []
+        var objToday = {};
+
+        if (!datatypecat == null) {
+
+            Object.keys(datatypecat[yyyy][mm][dd]).forEach(function (itemTypeCat, value) {
+                if (LabelTypeCatToday.indexOf(itemTypeCat) == -1){ // ถ้ายังไม่มีข้อมูลเหมือนตัวที่ส่งเข้าไปใน array indexOf จะส่งค่า -1 กลับมา
+                    LabelTypeCatToday.push(itemTypeCat);
+                }
+                // value
+                if (objToday.hasOwnProperty(itemTypeCat)) {
+                    objToday[itemTypeCat] = objToday[itemTypeCat] + parseInt(datatypecat[yyyy][mm][dd][itemTypeCat].countBreedCat);
+                } else {
+                    objToday[itemTypeCat] = parseInt(datatypecat[yyyy][mm][dd][itemTypeCat].countBreedCat);
+                }
+                CountTypeCatToday = []
+                for (var prop in objToday) {
+                    CountTypeCatToday.push(objToday[prop]);
+                }
+            })
+            return {label_type_Today: LabelTypeCatToday, count_type_cat_Today: CountTypeCatToday }
+        }
+        else {
+            $('.doughnut-chart-today-text').text("No Data")
+            return {label_type_Today: [], count_type_cat_Today: [] }
+        }
+    }
+    // graph Typecat
+    var dataTypeCatYearly = typeCatYearly(dataJsonTypeCat);
+    var dataTypeCatMonthly = typeCatMonthly(dataJsonTypeCat);
+    var dataTypeCatDaily = typeCatDaily(dataJsonTypeCat);
+    var dataTypeCatToday = typeCatToday(dataJsonTypeCat);
+    // graph Order and Cat sold
+    var dataYearly = dataForYearly(dataJson);
+    var dataMonthly = dataForMonthly(dataJson);
+    var dataDaily = dataForDaily(dataJson);
     var dataToday = dataForToday(dataJson);
-    console.log(dataDay.Cat_day)
 
         //color chart LinearGradient
     var ctx1 = document.getElementById("line-chart-today").getContext("2d");
@@ -1036,7 +1188,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
             ,
             datasets: [{
                 label: "Order",
-                data: [0],
+                data: dataToday.Order_today,
                 //echo $amount_order_today
 
                 borderWidth: 3,
@@ -1051,10 +1203,8 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                 lineTension: 0.3,
                 }, {
                     label: "Cat Sold",
-                    data:[0] ,
+                    data: dataToday.Cat_today,
                 // echo $amount_orderdt_today?>
-
-
                     borderWidth: 3,
                     borderColor: "#ffa62b",
                     fill: true,
@@ -1124,10 +1274,10 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                         "#02c39a",
                         "#f0f3bd",
                         "#cad2c5",],
-                    data:  [0]// echo $count_type_cat_day ?>
+                    data:  dataTypeCatToday.count_type_cat_Today// echo $count_type_cat_day ?>
                 }
             ],
-            labels: ["0"]// echo $type_cat_day ?>
+            labels: dataTypeCatToday.label_type_Today// echo $type_cat_day ?>
              ,
         },
         options: {
@@ -1157,14 +1307,14 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
             labels:
             // [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
             // echo $graphday; ?>
-                dataDay.label_day
+                dataDaily.label_day
             ,
             datasets: [{
                 label: "Order", // text legend
                 data:
                     // [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
                 // echo $amount_order_day?>
-                dataDay.Order_day
+                dataDaily.Order_day
                 ,
                 borderWidth: 3,
                 borderColor: "#16697a",
@@ -1181,7 +1331,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                 label: "Cat Sold", // text legend
                 data:
                 // echo $amount_orderdt_day?>
-                dataDay.Cat_day
+                dataDaily.Cat_day
                 ,
                 borderWidth: 3,
                 borderColor: "#ffa62b",
@@ -1247,10 +1397,10 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                         "#02c39a",
                         "#f0f3bd",
                         "#ffc16c",],
-                    data: [0]// echo $count_type_cat_month?>
+                    data: dataTypeCatDaily.count_type_cat_Daily// echo $count_type_cat_month?>
                 }
             ],
-            labels: ["0"]// echo $type_cat_month?>
+            labels: dataTypeCatDaily.label_type_Daily// echo $type_cat_month?>
              ,
         },
         options: {
@@ -1270,13 +1420,13 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
         data: {
             labels:
             // echo $graphmonth; ?>
-                dataMonth.label_month
+                dataMonthly.label_month
             ,
             datasets: [{
                 label: "Order", // text legend
                 data:
                 // echo $amount_order_month?>
-                    dataMonth.Order_month
+                    dataMonthly.Order_month
                 ,
                 borderWidth: 3,
                 borderColor: "#16697a",
@@ -1292,7 +1442,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                 label: "Cat Sold",
                 data:
                 // echo $amount_orderdt_month?>
-                    dataMonth.Cat_month
+                    dataMonthly.Cat_month
                 ,
                 borderWidth: 3,
                 borderColor: "#ffa62b",
@@ -1361,10 +1511,10 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                         "#e5d358",
                         "#8ae755",
                         "#e253ba"],
-                    data: [0]// echo $count_type_cat_year?>
+                    data: dataTypeCatMonthly.count_type_cat_month// echo $count_type_cat_year?>
                 }
             ],
-            labels: ["0"]// echo $type_cat_year?
+            labels: dataTypeCatMonthly.label_type_month// echo $type_cat_year?
              ,
         },
         options: {
@@ -1392,12 +1542,12 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
         type: 'bar',
         data: {
             labels:
-                dataYear.label_year// echo $graphyear; ?>
+                dataYearly.label_year// echo $graphyear; ?>
             ,
             datasets: [{
                 label: "Order", // text legend
                 data:
-                    dataYear.Order_year // echo $amount_order_year?>
+                    dataYearly.Order_year // echo $amount_order_year?>
                 ,
                 borderWidth: 3,
                 borderColor: "#16697a",
@@ -1411,7 +1561,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
             }, {
                 label: "Cat Sold",
                 data:
-                    dataYear.Cat_year // echo $amount_orderdt_year?>
+                    dataYearly.Cat_year // echo $amount_orderdt_year?>
                 ,
                 borderWidth: 3,
                 borderColor: "#ffa62b",
@@ -1478,10 +1628,10 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                         "#e5d358",
                         "#8ae755",
                         "#e253ba"],
-                    data: [0]// echo $count_type_cat_total?>
+                    data: dataTypeCatYearly.count_type_cat_year// echo $count_type_cat_total?>
                 }
             ],
-            labels: ["0"]// echo $type_cat_total?>
+            labels: dataTypeCatYearly.label_type_year// echo $type_cat_total?>
              ,
         },
         options: {
