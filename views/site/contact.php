@@ -59,13 +59,13 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                     <!--            menu 1 -->
                     <div class="switch-tab-content grid-flex grid-col">
 
-                        <div class="grid-flex grid-width-100 grid-align-center pt-3 pr-2">
+                        <div class="grid-flex grid-width-100 pt-3 pr-2">
 
                             <div class="main-dashboard grid-flex grid-flex-1 grid-justify-start">
                                 Main Dashboard
                             </div>
-                            <div class="grid-flex grid-flex-1 grid-align-center grid-justify-end">
-                                <div class="manage-dropdown grid-flex pr-0">
+                            <div class="grid-flex grid-flex-1 grid-justify-end">
+                                <div class="manage-dropdown grid-flex grid-align-center pr-0">
                                     Manage&nbsp;
                                     <i class="fa fa-chevron-down" aria-hidden="true" style="color: #459089;"></i>
                                     <div class="select-menu grid-flex grid-col">
@@ -101,10 +101,10 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                         <div class="grid-flex grid-flex-4">
                                             <div class="grid-flex grid-col">
                                                 <div class="grid-flex grid-flex-1 mr-1">
-                                                    <div class="graph-earning grid-flex-1 mr-1 p-1">
+                                                    <div class="graph-revenue grid-flex-1 mr-1 p-1">
                                                         <div class="grid-flex grid-col">
-                                                            <div class="text-earning grid-flex">
-                                                                Today's Earning
+                                                            <div class="text-revenue grid-flex">
+                                                                Today's earning
                                                             </div>
                                                             <div class="grid-flex">
                                                                 $2890
@@ -172,8 +172,8 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                             <div class="grid-flex grid-col grid-width-100">
                                                 <div class="total-balance grid-flex">
                                                     <div class="grid-flex grid-col">
-                                                        <div class="text-earning grid-flex" style="position: relative">
-                                                            Today's Earning
+                                                        <div class="text-revenue grid-flex" style="position: relative">
+                                                            Today's earning
                                                             <div class="div-icon-arrow-up">
                                                                 <i class="fa fa-arrow-up" aria-hidden="true"></i>
                                                             </div>
@@ -199,7 +199,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="text-earning grid-flex mt-1" style="z-index: 1">
+                                                        <div class="text-revenue grid-flex mt-1" style="z-index: 1">
                                                             Total Balance
                                                         </div>
                                                         <div class="grid-flex" style="position:relative;margin-top: -2px">
@@ -375,13 +375,13 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                     <!--            menu 1 -->
                     <div class="switch-tab-content grid-flex grid-col">
 
-                        <div class="grid-flex grid-width-100 grid-align-center pt-3 pr-2">
+                        <div class="grid-flex grid-width-100 pt-3 pr-2">
 
                             <div class="main-dashboard grid-flex grid-flex-1 grid-justify-start">
                                 Cats Sales
                             </div>
-                            <div class="grid-flex grid-flex-1 grid-align-center grid-justify-end">
-                                <div class="manage-dropdown grid-flex pr-0">
+                            <div class="grid-flex grid-flex-1 grid-justify-end">
+                                <div class="manage-dropdown grid-flex grid-align-center pr-0">
                                     Manage&nbsp;
                                     <i class="fa fa-chevron-down" aria-hidden="true" style="color: #459089;"></i>
                                     <div class="select-menu grid-flex grid-col">
@@ -419,24 +419,26 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                         <div class="grid-flex-2 mr-2">
                                             <div class="grid-flex grid-col">
                                                 <div class="grid-flex">
-                                                    <div class="graph-earning grid-flex-1 mr-1 p-1 pr-2 pl-2" style="position: relative"> <!--                 1 -->
+                                                    <div class="graph-revenue grid-flex-1 mr-1 p-1 pr-2 pl-2" style="position: relative"> <!--                 1 -->
                                                         <div class="header-color-div">
-                                                            Today's earning
+                                                            Today Revenue
                                                         </div>
-                                                        <div class="text-money grid-flex grid-justify-between">
-<!--                                                            echo "฿ ".number_format($today_earning,2)-->
-                                                            <div class="icon-hold-usd">
-                                                                <!--                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>-->
-                                                                <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
-                                                            </div>
+                                                        <div class="text-today-price text-money grid-flex grid-justify-between">
+<!--                                                            echo "฿ ".number_format($today_revenue,2)-->
+                                                        </div>
+                                                        <div class="icon-hold-usd">
+                                                            <!--                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>-->
+                                                            <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
                                                         </div>
                                                     </div>
-                                                    <div class="graph-earning grid-flex-1 p-1 pr-2 pl-2" style="position: relative">
+                                                    <div class="graph-revenue grid-flex-1 p-1 pr-2 pl-2" style="position: relative">
                                                         <div class="header-color-div">
-                                                            Benefit
+                                                            Profit (30%)
                                                         </div>
-                                                        <div class="text-money grid-flex grid-justify-between">
-<!--                                                             "฿ ".number_format(($today_earning * 30)/100,2)." (30%)" -->
+                                                        <div class="grid-flex grid-justify-between grid-align-center">
+                                                            <div class="profit-today text-money">
+<!--                                                             "฿ ".number_format(($today_revenue * 30)/100,2)." (30%)" -->
+                                                            </div>
                                                             <div class="div-icon-arrow-up-report">
                                                                 <i class="fa fa-arrow-up" aria-hidden="true"></i>
                                                             </div>
@@ -459,12 +461,24 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                         <div class="grid-flex-1">
                                             <div class="grid-flex grid-col">
                                                 <div class="grid-flex">
-                                                    <div class="graph-earning grid-flex-1 p-1 pl-2">
-                                                        <div class="header-color-div">
-                                                            Cat sold
-                                                        </div>
-                                                        <div class="text-money">
-<!--                                                             echo $cat_sold_day-->
+                                                    <div class="graph-revenue grid-flex-1">
+                                                        <div class="grid-flex grid-text-center" style="height: 100px;">
+                                                            <div class="grid-flex-1 pt-1" style="border-right: 2px dashed #c5c5c5">
+                                                                <div class="header-color-div">
+                                                                    Order
+                                                                </div>
+                                                                <div class="order-today" style="font-size: 18px;padding-top: 0.75rem">
+                                                                    <!--                                                             echo $cat_sold_year-->
+                                                                </div>
+                                                            </div>
+                                                            <div class="grid-flex-1 pt-1">
+                                                                <div class="header-color-div">
+                                                                    Cat sold
+                                                                </div>
+                                                                <div class="cat-sold-today" style="font-size: 18px;padding-top: 0.75rem">
+                                                                    <!--                                                             echo $cat_sold_year-->
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -485,24 +499,26 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                         <div class="grid-flex-2 mr-2">
                                             <div class="grid-flex grid-col">
                                                 <div class="grid-flex">
-                                                    <div class="graph-earning grid-flex-1 mr-1 p-1 pr-2 pl-2" style="position: relative"> <!--                 1 -->
+                                                    <div class="graph-revenue grid-flex-1 mr-1 p-1 pr-2 pl-2" style="position: relative"> <!--                 1 -->
                                                         <div class="header-color-div">
-                                                            Day's earning
+                                                            Day's Revenue
                                                         </div>
-                                                        <div class="text-money grid-flex grid-justify-between">
-<!--                                                            echo "฿ ".number_format($month_earning,2)-->
-                                                            <div class="icon-hold-usd">
-                                                                <!--                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>-->
-                                                                <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
-                                                            </div>
+                                                        <div class="text-daily-price text-money grid-flex grid-justify-between">
+<!--                                                            echo "฿ ".number_format($month_revenue,2)-->
+                                                        </div>
+                                                        <div class="icon-hold-usd">
+                                                            <!--                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>-->
+                                                            <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
                                                         </div>
                                                     </div>
-                                                    <div class="graph-earning grid-flex-1 p-1 pr-2 pl-2" style="position: relative">
+                                                    <div class="graph-revenue grid-flex-1 p-1 pr-2 pl-2" style="position: relative">
                                                         <div class="header-color-div">
-                                                            Benefit
+                                                            Profit (30%)
                                                         </div>
-                                                        <div class="text-money grid-flex grid-justify-between">
-<!--                                                            echo "฿ ".number_format(($month_earning * 30)/100,2)." (30%)" -->
+                                                        <div class="grid-flex grid-justify-between grid-align-center">
+                                                            <div class="profit-daily text-money">
+<!--                                                            echo "฿ ".number_format(($month_revenue * 30)/100,2)." (30%)" -->
+                                                            </div>
                                                             <div class="div-icon-arrow-up-report">
                                                                 <i class="fa fa-arrow-up" aria-hidden="true"></i>
                                                             </div>
@@ -523,14 +539,34 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                         <div class="grid-flex-1">
                                             <div class="grid-flex grid-col">
                                                 <div class="grid-flex">
-                                                    <div class="graph-earning grid-flex-1 p-1 pl-2">
-                                                        <div class="header-color-div">
-                                                            Cat sold
-                                                        </div>
-                                                        <div class="text-money">
-<!--                                                             echo $cat_sold_month-->
+                                                    <div class="graph-revenue grid-flex-1">
+                                                        <div class="grid-flex grid-text-center" style="height: 100px;">
+                                                            <div class="grid-flex-1 pt-1" style="border-right: 2px dashed #c5c5c5">
+                                                                <div class="header-color-div">
+                                                                    Order
+                                                                </div>
+                                                                <div class="order-daily" style="font-size: 18px;padding-top: 0.75rem">
+                                                                    <!--                                                             echo $cat_sold_year-->
+                                                                </div>
+                                                            </div>
+                                                            <div class="grid-flex-1 pt-1">
+                                                                <div class="header-color-div">
+                                                                    Cat sold
+                                                                </div>
+                                                                <div class="cat-sold-daily" style="font-size: 18px;padding-top: 0.75rem">
+                                                                    <!--                                                             echo $cat_sold_year-->
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
+<!--                                                    <div class="graph-revenue grid-flex-1 p-1 pl-2">-->
+<!--                                                        <div class="header-color-div">-->
+<!--                                                            Cat sold-->
+<!--                                                        </div>-->
+<!--                                                        <div class="cat-sold-daily text-money">-->
+<!--                                                             echo $cat_sold_month-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
                                                 </div>
                                                 <div class="grid-flex mt-1">
                                                     <canvas id="doughnut-chart-daily" class="bg-charts" width="100%" height="157"></canvas>
@@ -549,24 +585,26 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                         <div class="grid-flex-2 mr-2">
                                             <div class="grid-flex grid-col">
                                                 <div class="grid-flex">
-                                                    <div class="graph-earning grid-flex-1 mr-1 p-1 pr-2 pl-2" style="position: relative"> <!--                 1 -->
+                                                    <div class="graph-revenue grid-flex-1 mr-1 p-1 pr-2 pl-2" style="position: relative"> <!--                 1 -->
                                                         <div class="header-color-div">
-                                                            Month's earning
+                                                            Month's Revenue
                                                         </div>
-                                                        <div class="text-money grid-flex grid-justify-between">
-<!--                                                             echo "฿ ".number_format($year_earning,2)-->
-                                                            <div class="icon-hold-usd">
-                                                                <!--                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>-->
-                                                                <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
-                                                            </div>
+                                                        <div class="text-monthly-price text-money grid-flex grid-justify-between">
+<!--                                                             echo "฿ ".number_format($year_revenue,2)-->
+                                                        </div>
+                                                        <div class="icon-hold-usd">
+                                                            <!--                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>-->
+                                                            <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
                                                         </div>
                                                     </div>
-                                                    <div class="graph-earning grid-flex-1 p-1 pr-2 pl-2" style="position: relative">
+                                                    <div class="graph-revenue grid-flex-1 p-1 pr-2 pl-2" style="position: relative">
                                                         <div class="header-color-div">
-                                                            Benefit
+                                                            Profit (30%)
                                                         </div>
-                                                        <div class="text-money grid-flex grid-justify-between">
-<!--                                                             echo "฿ ".number_format(($year_earning * 30)/100,2)." (30%)" -->
+                                                        <div class="grid-flex grid-justify-between grid-align-center">
+                                                            <div class="profit-monthly text-money">
+<!--                                                             echo "฿ ".number_format(($year_revenue * 30)/100,2)." (30%)" -->
+                                                            </div>
                                                             <div class="div-icon-arrow-up-report">
                                                                 <i class="fa fa-arrow-up" aria-hidden="true"></i>
                                                             </div>
@@ -587,12 +625,24 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                         <div class="grid-flex-1">
                                             <div class="grid-flex grid-col">
                                                 <div class="grid-flex">
-                                                    <div class="graph-earning grid-flex-1 p-1 pl-2">
-                                                        <div class="header-color-div">
-                                                            Cat sold
-                                                        </div>
-                                                        <div class="text-money">
-<!--                                                             echo $cat_sold_year-->
+                                                    <div class="graph-revenue grid-flex-1">
+                                                        <div class="grid-flex grid-text-center" style="height: 100px;">
+                                                            <div class="grid-flex-1 pt-1" style="border-right: 2px dashed #c5c5c5">
+                                                                <div class="header-color-div">
+                                                                    Order
+                                                                </div>
+                                                                <div class="order-monthly" style="font-size: 18px;padding-top: 0.75rem">
+                                                                    <!--                                                             echo $cat_sold_year-->
+                                                                </div>
+                                                            </div>
+                                                            <div class="grid-flex-1 pt-1">
+                                                                <div class="header-color-div">
+                                                                    Cat sold
+                                                                </div>
+                                                                <div class="cat-sold-monthly" style="font-size: 18px;padding-top: 0.75rem">
+                                                                    <!--                                                             echo $cat_sold_year-->
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -613,24 +663,26 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                         <div class="grid-flex-2 mr-2">
                                             <div class="grid-flex grid-col">
                                                 <div class="grid-flex">
-                                                    <div class="graph-earning grid-flex-1 mr-1 p-1 pr-2 pl-2" style="position: relative"> <!--                 1 -->
+                                                    <div class="graph-revenue grid-flex-1 mr-1 p-1 pr-2 pl-2" style="position: relative"> <!--                 1 -->
                                                         <div class="header-color-div">
-                                                            Year's earning
+                                                            Year's Revenue
                                                         </div>
-                                                        <div class="text-money grid-flex grid-justify-between">
-<!--                                                             echo "฿ ".number_format($total_earning,2)-->
-                                                            <div class="icon-hold-usd">
-                                                                <!--                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>-->
-                                                                <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
-                                                            </div>
+                                                        <div class="text-yearly-price text-money grid-flex grid-justify-between">
+<!--                                                             echo "฿ ".number_format($total_revenue,2)-->
+                                                        </div>
+                                                        <div class="icon-hold-usd">
+                                                            <!--                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>-->
+                                                            <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
                                                         </div>
                                                     </div>
-                                                    <div class="graph-earning grid-flex-1 p-1 pr-2 pl-2" style="position: relative">
+                                                    <div class="graph-revenue grid-flex-1 p-1 pr-2 pl-2" style="position: relative">
                                                         <div class="header-color-div">
-                                                            Benefit
+                                                            Profit (30%)
                                                         </div>
-                                                        <div class="text-money grid-flex grid-justify-between">
-<!--                                                             echo "฿ ".number_format(($total_earning * 30)/100,2)." (30%)" -->
+                                                        <div class="grid-flex grid-justify-between grid-align-center">
+                                                            <div class="profit-yearly text-money">
+<!--                                                             echo "฿ ".number_format(($total_revenue * 30)/100,2)." (30%)" -->
+                                                            </div>
                                                             <div class="div-icon-arrow-up-report">
                                                                 <i class="fa fa-arrow-up" aria-hidden="true"></i>
                                                             </div>
@@ -651,12 +703,24 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                                         <div class="grid-flex-1">
                                             <div class="grid-flex grid-col">
                                                 <div class="grid-flex">
-                                                    <div class="graph-earning grid-flex-1 p-1 pl-2">
-                                                        <div class="header-color-div">
-                                                            Cat sold
-                                                        </div>
-                                                        <div class="text-money">
-<!--                                                             echo $cat_sold_total-->
+                                                    <div class="graph-revenue grid-flex-1">
+                                                        <div class="grid-flex grid-text-center" style="height: 100px;">
+                                                            <div class="grid-flex-1 pt-1" style="border-right: 2px dashed #c5c5c5">
+                                                                <div class="header-color-div">
+                                                                    Order
+                                                                </div>
+                                                                <div class="order-yearly" style="font-size: 18px;padding-top: 0.75rem">
+                                                                    <!--                                                             echo $cat_sold_year-->
+                                                                </div>
+                                                            </div>
+                                                            <div class="grid-flex-1 pt-1">
+                                                                <div class="header-color-div">
+                                                                    Cat sold
+                                                                </div>
+                                                                <div class="cat-sold-yearly" style="font-size: 18px;padding-top: 0.75rem">
+                                                                    <!--                                                             echo $cat_sold_year-->
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -890,6 +954,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
         tabSwicthSmallMenuOverview()
         tabSwicthSmallMenu()
 
+
     })
     // menu active header
     $(document).delegate('.menu-item', 'click', function () {
@@ -923,14 +988,14 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
         $(this).addClass('menu-active');
         handleOnSwicthTabSmallMenu(data_index_small_menu_report);
     })
-    //today
+    //Time today
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1;
     var yyyy = today.getFullYear();
-    // if (dd < 10) {
-    //     dd = '0' + dd;
-    // }
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
     if (mm < 10) {
         mm = '0' + mm;
     }
@@ -945,9 +1010,60 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
     let dataJsonTypeCat = JSON.parse(alldataTypeCat)
     let dataJsonMoneyCat = JSON.parse(dataMoney)
 
-    // const moneyCat = dataJsonMoneyCat.filter(function (dataJsonMoneyCat) {
-    //
-    // })
+    let yearlyPrice = []
+    let monthlyPrice = []
+    let dailyPrice = []
+    let TodayPrice = []
+
+    // price
+    dataJsonMoneyCat.yearly.forEach(function (dataMoneyCat) {
+        yearlyPrice.push(parseInt(dataMoneyCat.yearlyPrice))
+        return dataMoneyCat
+    })
+
+    dataJsonMoneyCat.monthly.forEach(function (dataMoneyCat) {
+        // a += parseInt(dataMoneyCat.monthlyPrice)
+        if (dataMoneyCat.year == yyyy){
+            monthlyPrice.push(parseInt(dataMoneyCat.monthlyPrice))
+        }
+    })
+    dataJsonMoneyCat.daily.forEach(function (dataMoneyCat) {
+        // a += parseInt(dataMoneyCat.monthlyPrice)
+        if(dataMoneyCat.month == mm){
+            dailyPrice.push(parseInt(dataMoneyCat.dailyPrice))
+
+            if (dataMoneyCat.day == dd){
+                TodayPrice.push(parseInt(dataMoneyCat.dailyPrice))
+            }
+        }
+
+    })
+    console.log(dataJsonMoneyCat.daily)
+    // set text price
+    var textYearlyPrice = yearlyPrice.reduce(function(acc, val) { return acc + val; }, 0)
+    var textMonthlyPrice = monthlyPrice.reduce(function(acc, val) { return acc + val; }, 0)
+    var textDailyPrice = dailyPrice.reduce(function(acc, val) { return acc + val; }, 0)
+    var textTodayPrice = TodayPrice.reduce(function(acc, val) { return acc + val; }, 0)
+
+    function formatNumber(num) {
+        return '฿ '+num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+
+    $('.text-today-price').text(formatNumber(textTodayPrice))
+    $('.text-daily-price').text(formatNumber(textDailyPrice))
+    $('.text-monthly-price').text(formatNumber(textMonthlyPrice))
+    $('.text-yearly-price').text(formatNumber(textYearlyPrice))
+
+    // set text profit
+    function profit(value){
+        value = (value * 30) / 100
+        return '฿ '+value.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+    $('.profit-today').text(profit(textTodayPrice))
+    $('.profit-daily').text(profit(textDailyPrice))
+    $('.profit-monthly').text(profit(textMonthlyPrice))
+    $('.profit-yearly').text(profit(textYearlyPrice))
+
     const dataForYearly = function(data) {
         let returnLabelYear = []
         let returnDataOrderYear = []
@@ -993,7 +1109,6 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                     returnDataOrderMonth.push(order_amount_Month)
                     returnDataCatMonth.push(cat_amount_Month)
                 })
-
             })
         // }
         return {label_month: returnLabelMonth, Order_month: returnDataOrderMonth , Cat_month: returnDataCatMonth}
@@ -1106,7 +1221,6 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
             // Object.keys(datatypecat).forEach(function (item, key) {
             // Object.keys(datatypecat[yyyy]).forEach(function (itemMonth, key) {
                 Object.keys(datatypecat[yyyy][mm]).forEach(function (itemDay, key) {
-
                     Object.keys(datatypecat[yyyy][mm][itemDay]).forEach(function (itemTypeCat, value) {
                         if (LabelTypeCatDaily.indexOf(itemTypeCat) == -1){ // ถ้ายังไม่มีข้อมูลเหมือนตัวที่ส่งเข้าไปใน array indexOf จะส่งค่า -1 กลับมา
                             LabelTypeCatDaily.push(itemTypeCat);
@@ -1132,11 +1246,9 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
         let LabelTypeCatToday = []
         let CountTypeCatToday = []
         var objToday = {};
-
-        if (!datatypecat == null) {
-
+        if (datatypecat) {
             Object.keys(datatypecat[yyyy][mm][dd]).forEach(function (itemTypeCat, value) {
-                if (LabelTypeCatToday.indexOf(itemTypeCat) == -1){ // ถ้ายังไม่มีข้อมูลเหมือนตัวที่ส่งเข้าไปใน array indexOf จะส่งค่า -1 กลับมา
+                if (LabelTypeCatToday.indexOf(itemTypeCat) == - 1){ // ถ้ายังไม่มีข้อมูลเหมือนตัวที่ส่งเข้าไปใน array indexOf จะส่งค่า -1 กลับมา
                     LabelTypeCatToday.push(itemTypeCat);
                 }
                 // value
@@ -1167,6 +1279,29 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
     var dataMonthly = dataForMonthly(dataJson);
     var dataDaily = dataForDaily(dataJson);
     var dataToday = dataForToday(dataJson);
+
+    // cat sold
+    var cat_sold_today = dataToday.Cat_today
+    var cat_sold_daily = dataDaily.Cat_day.reduce(function(acc, val) { return acc + val; }, 0)
+    var cat_sold_monthly = dataMonthly.Cat_month.reduce(function(acc, val) { return acc + val; }, 0)
+    var cat_sold_yearly = dataYearly.Cat_year.reduce(function(acc, val) { return acc + val; }, 0)
+
+    $('.cat-sold-today').text(cat_sold_today)
+    $('.cat-sold-daily').text(cat_sold_daily)
+    $('.cat-sold-monthly').text(cat_sold_monthly)
+    $('.cat-sold-yearly').text(cat_sold_yearly)
+
+    // order
+    var order_today = dataToday.Order_today
+    var order_daily = dataDaily.Order_day.reduce(function(acc, val) { return acc + val; }, 0)
+    var order_monthly = dataMonthly.Order_month.reduce(function(acc, val) { return acc + val; }, 0)
+    var order_yearly = dataYearly.Order_year.reduce(function(acc, val) { return acc + val; }, 0)
+
+    console.log(order_today);
+    $('.order-today').text(order_today)
+    $('.order-daily').text(order_daily)
+    $('.order-monthly').text(order_monthly)
+    $('.order-yearly').text(order_yearly)
 
         //color chart LinearGradient
     var ctx1 = document.getElementById("line-chart-today").getContext("2d");
@@ -1259,6 +1394,9 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                 }]
             },
             responsive:true,
+            tooltips: {
+                mode: 'point',
+            },
         }
     });
 
@@ -1373,6 +1511,11 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                     },
                 }],
                 xAxes: [{
+                    ticks: {
+                        autoSkip: false,
+                        // maxRotation: 20,
+                        minRotation: 20, // label day tilted(ตัวเอียง)
+                    },
                     gridLines: {
                         drawOnChartArea: false
                     },
@@ -1383,6 +1526,11 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                 }]
             },
             responsive:true,
+            hover:{
+                mode: 'nearest',
+                intersect: false,
+                axis: 'x',
+            },
         }
     });
     // doughnut chart daily
@@ -1455,8 +1603,6 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                 // lineTension: 0,// line dont curve
                 spanGaps: false,
             }
-
-
             ]
         },
         options: {
@@ -1495,6 +1641,11 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                 }]
             },
             responsive:true,
+            hover:{
+                mode: 'nearest',
+                intersect: false,
+                axis: 'x',
+            },
         }
     });
 
@@ -1520,7 +1671,6 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
         options: {
             elements: {
                 center: {
-
                     text: '90%',
                     color: '#FF6384', // Default is #000000
                     fontStyle: 'Arial', // Default is Arial
@@ -1654,7 +1804,5 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
             },
         }
     });
-
-
 </script>
 <?php JSRegister::end() ?>

@@ -57,7 +57,9 @@ display: flex;
 .grid-align-content-around {
     align-content: space-around;
 }
-
+.grid-text-center {
+    text-align: center;
+}
 .grid-flex-1 {
     flex: 1;
 }

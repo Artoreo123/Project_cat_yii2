@@ -121,7 +121,7 @@
     color: white;
 }
 
-.graph-earning{
+.graph-revenue{
     background: var(--bgarea2);
     /*box-shadow: 3px 4px 20px 0 #f7f1f1; !*#dedede*!*/
     /*box-shadow:3px 4px 5px 0 #eaeaea;*/
@@ -145,7 +145,7 @@
     height: 150px;
     overflow: hidden;
 }
-.text-earning{
+.text-revenue{
     margin-bottom: 2px;
     font-size: 10px;
     color: #c5c5c5;
