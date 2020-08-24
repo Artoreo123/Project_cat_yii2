@@ -3,7 +3,7 @@ use yii\web\JqueryAsset;
 
 $this->registerCssFile('@web/css/test.css', ['depends' => [JqueryAsset::className()]]);
 ?>
-
+<!--<div id="map"></div>-->
 <!--<div class="all">-->
 <!--    <div class="lefter">-->
 <!--        <div class="text">Cat</div>-->
@@ -24,21 +24,24 @@ $this->registerCssFile('@web/css/test.css', ['depends' => [JqueryAsset::classNam
 <!--</div>-->
 
 <!--<a href="https://jouanmarcel.com" target="_blank" class="ref">🔗 Jouan Marcel</a>-->
-<div class="cat-name">
+<!---->
+<!--<div id="navbar">-->
+<!---->
+<!--</div>-->
 
-</div>
 <?php JSRegister::begin() ?>
+
 <script>
-    $.ajax({
-        url: 'https://api.thecatapi.com/v1/breeds',
-        method: 'GET',
-        success: function (response) {
-            let mea = $('.cat-name')
-            response.forEach(function(cat) {
-                // console.log(cat.name);
-                mea.append(`<div class="look"><i class="far fa-square"></i> &nbsp; ${cat.name}</div>`)
-            });
+    $('.navbar-inverse').onscroll = function() {
+        scrollFunction()
+    };
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            $('.navbar-inverse').style.top = "0";
+        } else {
+            $('.navbar-inverse').style.top = "-50px";
         }
-    })
+    }
+
 </script>
 <?php JSRegister::end() ?>

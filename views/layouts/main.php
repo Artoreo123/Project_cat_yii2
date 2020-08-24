@@ -23,12 +23,15 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+<!--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp1M0RYXk-6M6l0Ef5JuQxBz2OMsa42yg&callback=initMap&libraries=&v=weekly" defer></script>-->
+<!--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp1M0RYXk-6M6l0Ef5JuQxBz2OMsa42yg&callback=myMap"></script>-->
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <?php
     JSRegister::begin();
     ?>
+
     <script>
         var _csrf = "<?= Yii::$app->request->csrfToken; ?>";
         var UrlBase = "<?=Yii::$app->homeUrl?>";
@@ -38,7 +41,7 @@ AppAsset::register($this);
     ?>
 
 </head>
-<!--close view page source-->
+<!--close view page     source-->
 <body oncontextmenu="return false">
 
 <?php $this->beginBody() ?>
@@ -65,15 +68,10 @@ AppAsset::register($this);
                 ) : (""),
                 Yii::$app->user->isGuest ? (['label' => 'About', 'url' => ['/site/about']]
                 ) : (""),
-                Yii::$app->user->isGuest ? (['label' => 'Contact', 'url' => ['/site/contact']]
-                ) : (""),
-                Yii::$app->user->isGuest ? (""
-                ) : (
-                ['label' => 'Graph', 'url' => ['/cat/graph']]
-                ),
-                 Yii::$app->user->isGuest ? ("") : (
-                 ['label' => 'Profile', 'url' => ['/site/profile']]
-                ),
+                ['label' => 'Contact', 'url' => ['/site/contact'],'visible'=> Yii::$app->user->isGuest],
+                ['label' => 'Dashboard', 'url' => ['/cat/dashboard'],'visible'=> Yii::$app->user->can("Admin")],
+                ['label' => 'Graph', 'url' => ['/cat/graph'],'visible'=> Yii::$app->user->can("User")],
+                ['label' => 'Profile', 'url' => ['/site/profile'],'visible'=> !Yii::$app->user->isGuest],
                 Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
                 ) : (
@@ -140,6 +138,28 @@ AppAsset::register($this);
         },1500);
     })
 
+    var animated = false;
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 50) {
+            // if(!animated){
+            $('.navbar-fixed-top').css('top', '-50' + 'px')
+            //     $('#contact').animate({
+            //         left: 0
+            //     }, 500 );
+            //     animated = true;
+            // }
+        }
+        else{
+            $('.navbar-fixed-top').css('top', '0' + 'px')
+        }
+    })
+    // else if(animated){
+    //     $('.navbar-fixed-top').fadeOut();
+    //     $('#contact').animate({
+    //         left: -115
+    //     }, 500 );
+    //     animated = false;
+    // }
 </script>
 <?php JSRegister::end(); ?>
 </html>

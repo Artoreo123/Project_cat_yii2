@@ -167,3 +167,12 @@ body {
 .ref::first-letter {
     font-size: 12px;
 }
+
+#navbar {
+    background-color: #333;
+    position: fixed;
+    top: -50px;
+    width: 100%;
+    display: block;
+    transition: top 0.3s;
+}

@@ -136,6 +136,7 @@ a.desc:after {
     /*color: green !important;*/
 }
 .navbar-fixed-top{
-    top: 5px;
+    top: 0px;
+    transition-duration: .5s;
 }
 
