@@ -237,6 +237,7 @@ $this->registerCssFile('https://fonts.googleapis.com/css?family=Fira+Sans+Conden
     </div>
 <?php JSRegister::begin(); ?>
     <script>
+
         $(document).delegate('.delete','click',function () {
             let data_id = $(this).attr('data-id');
             // console.log(data_id);
@@ -299,8 +300,15 @@ $this->registerCssFile('https://fonts.googleapis.com/css?family=Fira+Sans+Conden
             $.pjax.reload({container: '#pjax-test', url: url, 'timeout': 5000, async: false});
         });
 
+        var incart = '<?= $count ?>'
         $(document).delegate('#cart-index','click',function () {
-            window.location.href = UrlBase + 'cat/incart'
+            if (incart === '0'){
+                alert('Please choose cat !!')
+            }
+            else {
+                window.location.href = UrlBase + 'cat/incart'
+            }
+
         });
         // window.onscroll = function() {
         //     scrollFunction()

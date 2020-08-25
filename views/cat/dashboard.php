@@ -5,6 +5,10 @@
 
 /* @var $model app\models\ContactForm */
 
+use dosamigos\google\maps\LatLng;
+use dosamigos\google\maps\Map;
+use dosamigos\google\maps\overlays\InfoWindow;
+use dosamigos\google\maps\overlays\Marker;
 use richardfan\widget\JSRegister;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -19,6 +23,11 @@ $this->registerCssFile('@web/css/grid.css', ['depends' => [JqueryAsset::classNam
 $this->registerCssFile('@web/css/dashboard.css', ['depends' => [JqueryAsset::className()]]);
 //$this->registerJsFile('https://canvasjs.com/assets/script/canvasjs.min.js', ['depends' => [JqueryAsset::className()]]);
 $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Chart.min.js', ['depends' => [JqueryAsset::className()]]);
+
+$this->registerJsFile('@web/js/format.js', ['depends' => [JqueryAsset::className()]]);
+//$this->registerJsFile('https://maps.googleapis.com/maps/api/js?key=AIzaSyD34mcvNb4JwQf15HrIQkNuygTvX8zhnec&callback=initMap', ['depends' => [JqueryAsset::className()]]);
+//$this->registerJsFile('@web/js/mainchart.js', ['depends' => [JqueryAsset::className()]]);
+
 ?>
 <div class="grid-flex site-contact">
     <div class="grid-flex grid-flex-1">
@@ -755,17 +764,60 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                     </div>
                     <!--                        end content 2-->
                     <div class="switch-tab-content grid-flex grid-col">
-                        <div class="grid-flex grid-width-100 grid-height-100 pt-3 pr-2">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6254.027175517673!2d102.83420200092854!3d16.49778049397325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31228bf54b3484c9%3A0x5c2f099195f8b03a!2zSU5FVCDguILguK3guJnguYHguIHguYjguJk!5e0!3m2!1sen!2sth!4v1598238898328!5m2!1sen!2sth"
-                                    width="100%" frameborder="0" style="border:0;border-radius: 15px;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        <div class="grid-flex grid-width-100 pt-3">
+                            <h3>My Google Maps Demo</h3>
+                        </div>
+                        <div id="map-field" class="grid-flex grid-width-100 grid-height-100 pt-3 pr-2">
+                            <?php
+//                               \app\components\LocationInputHelper::widget([
+//                                'apiKey' => 'AIzaSyD34mcvNb4JwQf15HrIQkNuygTvX8zhnec&language=th',
+//                                'name' => 'User',
+//                                'searchInputOptions' => [
+//                                    'placeholder' => 'ค้นหาตำแหน่ง...'
+//                                ],
+//                                'mapOptions' => [
+//                                    'center' => ['lat' => 13.777234, 'lng' => 100.561981],
+//                                    'zoom' => 6,
+//                                    // Other google map options.
+//                                ],
+//                                'markerOptions' => [
+//                                    'draggable' => true,
+//                                    // Other google map maker options.
+//                                ],
+//                                'disableLocationPicker' => 0, // Or 1 to define input become enabled or not to use just map view.
+//                                'width' => '100%', // Map container width
+//                                'height' => '100%', // Map container height
+//                                'containerOptions' => [
+//                                    'class' => 'map-container' // Map container html options.
+//                                ],
+//                            ])
+                            $coord = new LatLng(['lat' => 39.720089311812094, 'lng' => 2.91165944519042]);
+                            $map = new Map([
+                               'center' => $coord,
+                               'zoom' => 14,
+                               'width' => '90%',
+                               'height'=>'450',
+                            ]);
+                            $marker = new Marker([
+                               'position' => $coord,
+                               'title' => 'My Home Town',
+                            ]);
+                            $marker->attachInfoWindow(
+                               new InfoWindow([
+                                   'content' => '<p>This is my super cool content</p>'
+                               ])
+                            );
+                            $map->addOverlay($marker);
+                            echo $map->display()
+                           ?>
+
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="area-2 grid-flex grid-col grid-flex-1 pl-1 pt-2 pr-2 pb-2 ">
-            <div class="header-area-2 grid-flex mr-2">
+            <div class="header-area-2 grid-flex pr-2">
                 <div class="grid-flex grid-flex-1 pt-1">
                     <div class="header-icon-mail grid-flex grid-justify-center grid-align-center ml-2">
                         <i class="far fa-envelope" aria-hidden="true" style="font-size: 18px"></i>
@@ -824,6 +876,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
     </div>
 
 </div>
+
 <?php JSRegister::begin() ?>
 <script>
     $(document).delegate('.manage-dropdown', 'click', function () {
@@ -956,7 +1009,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
     const tabSwicthSmallMenuOverview = function () {
         let widthtabSmallXOverview = $('.switch-tab-content').innerWidth()
         let heightabSmallViewOverview = $('.switch-tab-view-small-overview').innerHeight()
-        console.log(widthtabSmallXOverview)
+        // console.log(widthtabSmallXOverview)
         $('.switch-tab-x-small-overview').css('height', heightabSmallViewOverview + 'px')
         // close becuase add grid-width-100 in switch-tab-x-small-overview +++++++++
         $('.switch-tab-content-small-overview').css('width', widthtabSmallXOverview + 'px')
@@ -1027,9 +1080,9 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
     var alldataTypeCat = '<?= $dataTypeCat ?>'
     var dataMoney = '<?= $dataMoney ?>'
 
-    let dataJson = JSON.parse(dataOrder)
-    let dataJsonTypeCat = JSON.parse(alldataTypeCat)
-    let dataJsonMoneyCat = JSON.parse(dataMoney)
+    var dataJson = JSON.parse(dataOrder)
+    var dataJsonTypeCat = JSON.parse(alldataTypeCat)
+    var dataJsonMoneyCat = JSON.parse(dataMoney)
 
     let yearlyPrice = []
     let monthlyPrice = []
@@ -1059,31 +1112,24 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
         }
 
     })
-    console.log(dataJsonMoneyCat.daily)
     // set text price
     var textYearlyPrice = yearlyPrice.reduce(function(acc, val) { return acc + val; }, 0)
     var textMonthlyPrice = monthlyPrice.reduce(function(acc, val) { return acc + val; }, 0)
     var textDailyPrice = dailyPrice.reduce(function(acc, val) { return acc + val; }, 0)
     var textTodayPrice = TodayPrice.reduce(function(acc, val) { return acc + val; }, 0)
 
-    function formatNumber(num) {
-        return '฿ '+num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-    }
 
-    $('.text-today-price').text(formatNumber(textTodayPrice))
-    $('.text-daily-price').text(formatNumber(textDailyPrice))
-    $('.text-monthly-price').text(formatNumber(textMonthlyPrice))
-    $('.text-yearly-price').text(formatNumber(textYearlyPrice))
+    $('.text-today-price').text(FormatMoney(textTodayPrice))
+    $('.text-daily-price').text(FormatMoney(textDailyPrice))
+    $('.text-monthly-price').text(FormatMoney(textMonthlyPrice))
+    $('.text-yearly-price').text(FormatMoney(textYearlyPrice))
 
     // set text profit
-    function profit(value){
-        value = (value * 30) / 100
-        return '฿ '+value.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-    }
-    $('.profit-today').text(profit(textTodayPrice))
-    $('.profit-daily').text(profit(textDailyPrice))
-    $('.profit-monthly').text(profit(textMonthlyPrice))
-    $('.profit-yearly').text(profit(textYearlyPrice))
+
+    $('.profit-today').text(FormatProfit(textTodayPrice))
+    $('.profit-daily').text(FormatProfit(textDailyPrice))
+    $('.profit-monthly').text(FormatProfit(textMonthlyPrice))
+    $('.profit-yearly').text(FormatProfit(textYearlyPrice))
 
     const dataForYearly = function(data) {
         let returnLabelYear = []
@@ -1109,7 +1155,6 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
         // }
         return {label_year: returnLabelYear, Order_year: returnDataOrderYear , Cat_year: returnDataCatYear}
     }
-
     const dataForMonthly = function(data) {
         let returnLabelMonth = []
         let returnDataOrderMonth = []
@@ -1168,7 +1213,6 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
     const typeCatYearly = function(datatypecat) {
         let LabelTypeCatYear = []
         let CountTypeCatYear = []
-        let FilterLabelTypeCatYear = []
         var objYearly = {};
 
         if (datatypecat) {
@@ -1289,19 +1333,18 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
                 }
             })
             return {label_type_Today: LabelTypeCatToday, count_type_cat_Today: CountTypeCatToday }
-
         }
     }
-    // graph Typecat
-    var dataTypeCatYearly = typeCatYearly(dataJsonTypeCat);
-    var dataTypeCatMonthly = typeCatMonthly(dataJsonTypeCat);
-    var dataTypeCatDaily = typeCatDaily(dataJsonTypeCat);
-    var dataTypeCatToday = typeCatToday(dataJsonTypeCat);
-    // graph Order and Cat sold
-    var dataYearly = dataForYearly(dataJson);
-    var dataMonthly = dataForMonthly(dataJson);
-    var dataDaily = dataForDaily(dataJson);
-    var dataToday = dataForToday(dataJson);
+    // data doughnutgraph Typecat
+    window.dataTypeCatYearly = typeCatYearly(dataJsonTypeCat);
+    window.dataTypeCatMonthly = typeCatMonthly(dataJsonTypeCat);
+    window.dataTypeCatDaily = typeCatDaily(dataJsonTypeCat);
+    window.dataTypeCatToday = typeCatToday(dataJsonTypeCat);
+    // data maingraph Order and Cat sold
+    window.dataYearly = dataForYearly(dataJson);
+    window.dataMonthly = dataForMonthly(dataJson);
+    window.dataDaily = dataForDaily(dataJson);
+    window.dataToday = dataForToday(dataJson);
 
     // cat sold
     var cat_sold_today = dataToday.Cat_today
@@ -1309,10 +1352,10 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
     var cat_sold_monthly = dataMonthly.Cat_month.reduce(function(acc, val) { return acc + val; }, 0)
     var cat_sold_yearly = dataYearly.Cat_year.reduce(function(acc, val) { return acc + val; }, 0)
 
-    $('.cat-sold-today').text(cat_sold_today)
-    $('.cat-sold-daily').text(cat_sold_daily)
-    $('.cat-sold-monthly').text(cat_sold_monthly)
-    $('.cat-sold-yearly').text(cat_sold_yearly)
+    $('.cat-sold-today').text(FormatCountOderAndCat(cat_sold_today))
+    $('.cat-sold-daily').text(FormatCountOderAndCat(cat_sold_daily))
+    $('.cat-sold-monthly').text(FormatCountOderAndCat(cat_sold_monthly))
+    $('.cat-sold-yearly').text(FormatCountOderAndCat(cat_sold_yearly))
 
     // order
     var order_today = dataToday.Order_today
@@ -1320,514 +1363,46 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.2/Cha
     var order_monthly = dataMonthly.Order_month.reduce(function(acc, val) { return acc + val; }, 0)
     var order_yearly = dataYearly.Order_year.reduce(function(acc, val) { return acc + val; }, 0)
 
-    console.log(order_today);
-    $('.order-today').text(order_today)
-    $('.order-daily').text(order_daily)
-    $('.order-monthly').text(order_monthly)
-    $('.order-yearly').text(order_yearly)
+    $('.order-today').text(FormatCountOderAndCat(order_today))
+    $('.order-daily').text(FormatCountOderAndCat(order_daily))
+    $('.order-monthly').text(FormatCountOderAndCat(order_monthly))
+    $('.order-yearly').text(FormatCountOderAndCat(order_yearly))
 
     //color chart LinearGradient
     var ctx1 = document.getElementById("line-chart-today").getContext("2d");
 
-    var gradientFillCat = ctx1.createLinearGradient(0, 0, 0, 300);
+    window.gradientFillCat = ctx1.createLinearGradient(0, 0, 0, 300);
     gradientFillCat.addColorStop(0, "rgba(255,166,43,0.98)");
     gradientFillCat.addColorStop(1, "rgba(255, 255, 255, 0)");
 
-    var gradientFillOrder = ctx1.createLinearGradient(0, 0, 0, 300);
+    window.gradientFillOrder = ctx1.createLinearGradient(0, 0, 0, 300);
     gradientFillOrder.addColorStop(0, "#16697afa");
     gradientFillOrder.addColorStop(1, "rgba(255, 255, 255, 0)");
 
-    // chart daily main graph
-    new Chart(document.getElementById("line-chart-today"), {
-        type: 'bar',
-        data: {
-            labels:
-            dataToday.label_today
-            ,
-            datasets: [{
-                label: "Order",
-                data: dataToday.Order_today,
-                //echo $amount_order_today
+    // ใช้โหลด file js อื่นๆ ให้โหลดทีหลัง this file js
+    $.getScript('../js/doughnutchart.js', function(){
 
-                borderWidth: 3,
-                borderColor: "#16697a",
-                fill: true,
-                backgroundColor: gradientFillOrder,
-                pointBorderWidth: 2,
-                pointBackgroundColor: '#ffffff',
-                pointRadius: 2,
-                pointHoverRadius: 5,
-                spanGaps: true,
-                lineTension: 0.3,
-            }, {
-                label: "Cat Sold",
-                data: dataToday.Cat_today,
-                // echo $amount_orderdt_today?>
-                borderWidth: 3,
-                borderColor: "#ffa62b",
-                fill: true,
-                backgroundColor: gradientFillCat,
-                pointBorderWidth: 2,
-                pointBackgroundColor: '#ffffff',
-                pointRadius: 2,
-                pointHoverRadius: 5,
-                spanGaps: false,
-            }
-            ]
-        },
-        options: {
-            //maintainAspectRatio: false,
-            // layout: {
-            //     padding: {
-            //         left: 50,
-            //     }
-            // },
-            title: {
-                display: true,
-                text: 'Daily summarize sale'
-            },
-            legend: {
-                display: true,
-            },
-            animation: {
-                easing: "easeInOutBack"
-            },
-            scales: {
-                yAxes: [{
-                    gridLines: {
-                        drawOnChartArea: false
-                    },
-                    scaleLabel : {
-                        display : true,
-                        labelString : "Number of cats (ตัว)",
-                    },
-                    ticks: {
-                        beginAtZero: true,
-                        stepSize: 1,
-                    },
-                }],
-                xAxes: [{
-                    gridLines: {
-                        drawOnChartArea: false
-                    },
-                    scaleLabel : {
-                        display : true,
-                        labelString : "To Day",
-                    },
-                }]
-            },
-            responsive:true,
-            tooltips: {
-                mode: 'point',
-            },
-        }
+    });
+    $.getScript('../js/mainchart.js', function(){
+
     });
 
-    // doughnut chart today
-    new Chart(document.getElementById("doughnut-chart-today"), {
-        type: 'doughnut',
-        data: {
-            datasets: [
-                {
-                    label: "Population (millions)",
-                    backgroundColor: ["#05668d",
-                        "#00a896",
-                        "#02c39a",
-                        "#f0f3bd",
-                        "#cad2c5",],
-                    data: dataTypeCatToday.count_type_cat_Today// echo $count_type_cat_day ?>
-                }
-            ],
-            labels: dataTypeCatToday.label_type_Today// echo $type_cat_day ?>
-            ,
-        },
-        options: {
-            elements: {
-                center: {
 
-                    text: '90%',
-                    color: '#FF6384', // Default is #000000
-                    fontStyle: 'Arial', // Default is Arial
-                    sidePadding: 20 // Defualt is 20 (as a percentage)
-                }
-            },
-            title: {
-                display: true,
-                text: 'Breed of cats'
-            },
-            legend: {
-                display: true,
-                position: 'bottom',
-            },
-        }
-    });
-    //chart daily
-    new Chart(document.getElementById("line-chart-daily"), {
-        type: 'line',
-        data: {
-            labels:
-            // [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
-            // echo $graphday; ?>
-            dataDaily.label_day
-            ,
-            datasets: [{
-                label: "Order", // text legend
-                data:
-                // [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
-                // echo $amount_order_day?>
-                dataDaily.Order_day
-                ,
-                borderWidth: 3,
-                borderColor: "#16697a",
-                fill: true,
-                backgroundColor: gradientFillOrder,
-                pointBorderWidth: 2,
-                pointBackgroundColor: '#ffffff',
-                pointRadius: 2,
-                pointHoverRadius: 5,
-                spanGaps: true,
-                // lineTension: 0,// line dont curve
-            }, {
-                // label: "Sell Cat/Day",
-                label: "Cat Sold", // text legend
-                data:
-                // echo $amount_orderdt_day?>
-                dataDaily.Cat_day
-                ,
-                borderWidth: 3,
-                borderColor: "#ffa62b",
-                fill: true,
-                backgroundColor: gradientFillCat,
-                pointBorderWidth: 2,
-                pointBackgroundColor: '#ffffff',
-                pointRadius: 2,
-                pointHoverRadius: 5,
-                spanGaps: false,
-            }
-            ]
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Daily summarize sale'
-            },
-            legend: {
-                display: true,
-                legendText : ['Current','Vs last week/month/year']
-
-            },
-            animation: {
-                easing: "easeInOutBack"
-            },
-            scales: {
-                yAxes: [{
-                    gridLines: {
-                        drawOnChartArea: false
-                    },
-                    scaleLabel : {
-                        display : true,
-                        labelString : "Number of cats (ตัว)",
-                    },
-                    ticks: {
-                        beginAtZero: true,
-                        stepSize: 1,
-                    },
-                }],
-                xAxes: [{
-                    ticks: {
-                        autoSkip: false,
-                        // maxRotation: 20,
-                        minRotation: 20, // label day tilted(ตัวเอียง)
-                    },
-                    gridLines: {
-                        drawOnChartArea: false
-                    },
-                    scaleLabel : {
-                        display : true,
-                        labelString : "Days",
-                    },
-                }]
-            },
-            responsive:true,
-            hover:{
-                mode: 'nearest',
-                intersect: false,
-                axis: 'x',
-            },
-        }
-    });
-    // doughnut chart daily
-    new Chart(document.getElementById("doughnut-chart-daily"), {
-        type: 'doughnut',
-        data: {
-            datasets: [
-                {
-                    label: "Population (millions)",
-                    backgroundColor: ["#05668d",
-                        "#00a896",
-                        "#02c39a",
-                        "#f0f3bd",
-                        "#ffc16c",],
-                    data: dataTypeCatDaily.count_type_cat_Daily// echo $count_type_cat_month?>
-                }
-            ],
-            labels: dataTypeCatDaily.label_type_Daily// echo $type_cat_month?>
-            ,
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Breed of cats'
-            },
-            legend: {
-                display: true,
-                position: 'bottom',
-            },
-        }
-    });
-    // chart monthly
-    new Chart(document.getElementById("line-chart-monthly"), {
-        type: 'line',
-        data: {
-            labels:
-            // echo $graphmonth; ?>
-            dataMonthly.label_month
-            ,
-            datasets: [{
-                label: "Order", // text legend
-                data:
-                // echo $amount_order_month?>
-                dataMonthly.Order_month
-                ,
-                borderWidth: 3,
-                borderColor: "#16697a",
-                fill: true,
-                backgroundColor: gradientFillOrder,
-                pointBorderWidth: 2,
-                pointBackgroundColor: '#ffffff',
-                pointRadius: 2,
-                pointHoverRadius: 5,
-                lineTension: 0.3,
-                spanGaps: true,
-            }, {
-                label: "Cat Sold",
-                data:
-                // echo $amount_orderdt_month?>
-                dataMonthly.Cat_month
-                ,
-                borderWidth: 3,
-                borderColor: "#ffa62b",
-                fill: true,
-                backgroundColor: gradientFillCat,
-                pointBorderWidth: 2,
-                pointBackgroundColor: '#ffffff',
-                pointRadius: 2,
-                pointHoverRadius: 5,
-                // lineTension: 0,// line dont curve
-                spanGaps: false,
-            }
-            ]
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Daily summarize sale'
-            },
-            legend: {
-                display: true,
-            },
-            animation: {
-                easing: "easeInOutBack"
-            },
-            scales: {
-                yAxes: [{
-                    gridLines: {
-                        drawOnChartArea: false
-                    },
-                    scaleLabel : {
-                        display : true,
-                        labelString : "Number of cats (ตัว)",
-                    },
-                    ticks: {
-                        beginAtZero: true,
-                        stepSize: 1,
-                    },
-                }],
-                xAxes: [{
-                    gridLines: {
-                        drawOnChartArea: false
-                    },
-                    scaleLabel : {
-                        display : true,
-                        labelString : "Months",
-                    },
-                }]
-            },
-            responsive:true,
-            hover:{
-                mode: 'nearest',
-                intersect: false,
-                axis: 'x',
-            },
-        }
-    });
-
-    // doughnut chart monthly
-    new Chart(document.getElementById("doughnut-chart-monthly"), {
-        type: 'doughnut',
-        data: {
-            datasets: [
-                {
-                    label: "Population (millions)",
-                    backgroundColor: ["#FF6384",
-                        "#36A2EB",
-                        "#c456ff",
-                        "#e5d358",
-                        "#8ae755",
-                        "#e253ba"],
-                    data: dataTypeCatMonthly.count_type_cat_month// echo $count_type_cat_year?>
-                }
-            ],
-            labels: dataTypeCatMonthly.label_type_month// echo $type_cat_year?
-            ,
-        },
-        options: {
-            elements: {
-                center: {
-                    text: '90%',
-                    color: '#FF6384', // Default is #000000
-                    fontStyle: 'Arial', // Default is Arial
-                    sidePadding: 20 // Defualt is 20 (as a percentage)
-                }
-            },
-            title: {
-                display: true,
-                text: 'Breed of cats'
-            },
-            legend: {
-                display: true,
-                position: 'bottom',
-            },
-        }
-    });
-    // chart yearly
-    new Chart(document.getElementById("line-chart-yearly"), {
-        type: 'bar',
-        data: {
-            labels:
-            dataYearly.label_year// echo $graphyear; ?>
-            ,
-            datasets: [{
-                label: "Order", // text legend
-                data:
-                dataYearly.Order_year // echo $amount_order_year?>
-                ,
-                borderWidth: 3,
-                borderColor: "#16697a",
-                fill: true,
-                backgroundColor: gradientFillOrder,
-                pointBorderWidth: 2,
-                pointBackgroundColor: '#ffffff',
-                pointRadius: 2,
-                pointHoverRadius: 5,
-                spanGaps: true,
-            }, {
-                label: "Cat Sold",
-                data:
-                dataYearly.Cat_year // echo $amount_orderdt_year?>
-                ,
-                borderWidth: 3,
-                borderColor: "#ffa62b",
-                fill: true,
-                backgroundColor: gradientFillCat,
-                pointBorderWidth: 2,
-                pointBackgroundColor: '#ffffff',
-                pointRadius: 2,
-                pointHoverRadius: 5,
-                // lineTension: 0,// line dont curve
-                spanGaps: false,
-            }
-            ]
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Daily summarize sale'
-            },
-            legend: {
-                display: true,
-            },
-            animation: {
-                easing: "easeInOutBack"
-            },
-            scales: {
-                yAxes: [{
-                    gridLines: {
-                        drawOnChartArea: false
-                    },
-                    scaleLabel : {
-                        display : true,
-                        labelString : "Number of cats (ตัว)",
-                    },
-                    ticks: {
-                        beginAtZero: true,
-                        stepSize: 1,
-                    },
-                }],
-                xAxes: [{
-                    gridLines: {
-                        drawOnChartArea: false
-                    },
-                    scaleLabel : {
-                        display : true,
-                        labelString : "Years",
-                    },
-                }]
-            },
-            responsive:true,
-        }
-    });
-
-    // doughnut chart yearly
-    new Chart(document.getElementById("doughnut-chart-yearly"), {
-        type: 'doughnut',
-        data: {
-            datasets: [
-                {
-                    label: "Population (millions)",
-                    backgroundColor: ["#FF6384",
-                        "#36A2EB",
-                        "#c456ff",
-                        "#e5d358",
-                        "#8ae755",
-                        "#e253ba"],
-                    data: dataTypeCatYearly.count_type_cat_year// echo $count_type_cat_total?>
-                }
-            ],
-            labels: dataTypeCatYearly.label_type_year// echo $type_cat_total?>
-            ,
-        },
-        options: {
-            elements: {
-                center: {
-
-                    text: '90%',
-                    color: '#FF6384', // Default is #000000
-                    fontStyle: 'Arial', // Default is Arial
-                    sidePadding: 20 // Defualt is 20 (as a percentage)
-                }
-            },
-            title: {
-                display: true,
-                text: 'Breed of cats'
-            },
-            legend: {
-                display: true,
-                position: 'bottom',
-            },
-        }
-    });
-
+    // window.initMap = function() {
+    //     var location = {lat: 51.47672559, lng: -3.17107379};
+    //     var markerloc = {lat: 51.476852, lng: -3.167869};
+    //     map = new google.maps.Map($('#map'), {
+    //         center: location,
+    //         scrollwheel: false,
+    //         zoom: 17
+    //     });
+    //     var marker = new google.maps.Marker({
+    //         position: markerloc,
+    //         map: map,
+    //         title: 'Hello World!'
+    //     });
+    // };
 
 </script>
+
 <?php JSRegister::end() ?>

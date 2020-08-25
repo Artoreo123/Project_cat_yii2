@@ -62,6 +62,17 @@ $config = [
                 'path' => '@webroot/uploads'
             ],
         ],
+        'assetManager' => [
+            'bundles' => [
+                'dosamigos\google\maps\MapAsset' => [
+                    'options' => [
+                        'key' => 'AIzaSyD34mcvNb4JwQf15HrIQkNuygTvX8zhnec',
+                        'language' => 'th',
+                        'version' => '3.1.18'
+                    ]
+                ]
+            ]
+        ],
     ],
     'params' => $params,
     'modules' => [
