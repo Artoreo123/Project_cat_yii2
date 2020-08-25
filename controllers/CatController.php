@@ -10,6 +10,7 @@ use app\models\Cat;
 use app\models\Order;
 use app\models\search\CatSearch;
 use app\models\Test;
+use dosamigos\google\maps\LatLng;
 use Intervention\Image\ImageManagerStatic;
 use kartik\detail\DetailView;
 use trntv\filekit\actions\DeleteAction;
@@ -25,7 +26,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\web\Session;
-
 //use yii\widgets\DetailView;
 
 class CatController extends Controller
@@ -277,11 +277,27 @@ class CatController extends Controller
         $dataConvert = Helper::convertData($data);
         $dataConvert = Json::encode($dataConvert);
 
+        $markers = [];
+        //กำหนดพิกัดในประเทศไทยเป็นตัวอย่าง
+        $min_lat = 8;
+        $max_lat = 18;
+        $min_long = 98;
+        $max_long = 105;
+
+        for($i = 1; $i <= 300; $i++){
+            $markers[] = ['place' => 'Hospital '.$i, 'lat_long' => new LatLng(['lat' => (rand($min_lat, $max_lat).".".rand(1000,9999)), 'lng' => (rand($min_long, $max_long).".".rand(1000,9999))])];
+        }
+//        return Json::encode($markers);
+//        print_r($markers);
+//        exit();
+
+
 //        return $dataMoney;
         return $this->render('dashboard', [
             'dataOrder' => $dataConvert,
             'dataTypeCat' => $dataTypeCatV2,
             'dataMoney' => $dataMoney,
+            'markers' => $markers
         ]);
     }
 

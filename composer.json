@@ -24,7 +24,8 @@
         "intervention/image": "^2.5",
         "kartik-v/yii2-detail-view": "*",
         "richardfan1126/yii2-js-register": "*",
-        "2amigos/yii2-google-maps-library": "*"
+        "2amigos/yii2-google-maps-library": "*",
+        "edofre/yii2-marker-clusterer": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

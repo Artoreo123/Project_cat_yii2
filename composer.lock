@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "95d2f559f906f9336ae0a3eefa41dbf4",
+    "content-hash": "fceba472929280c2b44af537bae96c63",
     "packages": [
         {
             "name": "2amigos/yii2-google-maps-library",
@@ -314,6 +314,57 @@
                 }
             ],
             "time": "2020-05-25T17:44:05+00:00"
+        },
+        {
+            "name": "edofre/yii2-marker-clusterer",
+            "version": "V1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Edofre/yii2-marker-clusterer.git",
+                "reference": "a82f5fedaec5294978e507405d9b5f09a7a36b42"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Edofre/yii2-marker-clusterer/zipball/a82f5fedaec5294978e507405d9b5f09a7a36b42",
+                "reference": "a82f5fedaec5294978e507405d9b5f09a7a36b42",
+                "shasum": ""
+            },
+            "require": {
+                "2amigos/yii2-google-maps-library": "*",
+                "php": ">=5.5.0",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-jui": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "edofre\\markerclusterer\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Edo Freriks",
+                    "email": "edofre@gmail.com"
+                }
+            ],
+            "description": "Yii2 assets and marker clusterer",
+            "homepage": "https://github.com/edofre/yii2-marker-clusterer",
+            "keywords": [
+                "2amigos",
+                "clusterer",
+                "google",
+                "maps"
+            ],
+            "time": "2017-02-13T15:18:02+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -4925,6 +4976,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {

@@ -5,10 +5,13 @@
 
 /* @var $model app\models\ContactForm */
 
+
 use dosamigos\google\maps\LatLng;
-use dosamigos\google\maps\Map;
+//use dosamigos\google\maps\Map;
+use edofre\markerclusterer\Map;
 use dosamigos\google\maps\overlays\InfoWindow;
-use dosamigos\google\maps\overlays\Marker;
+use edofre\markerclusterer\Marker;
+use dosamigos\google\maps\overlays\Polygon;
 use richardfan\widget\JSRegister;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -77,7 +80,7 @@ $this->registerJsFile('@web/js/format.js', ['depends' => [JqueryAsset::className
                                 Main Dashboard
                             </div>
                             <div class="grid-flex grid-flex-1 grid-justify-end">
-                                <div class="manage-dropdown grid-flex grid-align-center pr-0">
+                                <div class="manage-dropdown dropdown-overview grid-flex grid-align-center pr-0">
                                     Manage&nbsp;
                                     <i class="fa fa-chevron-down" aria-hidden="true" style="color: #459089;"></i>
                                     <div class="select-menu grid-flex grid-col">
@@ -393,7 +396,7 @@ $this->registerJsFile('@web/js/format.js', ['depends' => [JqueryAsset::className
                                 Cats Sales
                             </div>
                             <div class="grid-flex grid-flex-1 grid-justify-end">
-                                <div class="manage-dropdown grid-flex grid-align-center pr-0">
+                                <div class="manage-dropdown dropdown-report grid-flex grid-align-center pr-0">
                                     Manage&nbsp;
                                     <i class="fa fa-chevron-down" aria-hidden="true" style="color: #459089;"></i>
                                     <div class="select-menu grid-flex grid-col">
@@ -764,8 +767,8 @@ $this->registerJsFile('@web/js/format.js', ['depends' => [JqueryAsset::className
                     </div>
                     <!--                        end content 2-->
                     <div class="switch-tab-content grid-flex grid-col">
-                        <div class="grid-flex grid-width-100 pt-3">
-                            <h3>My Google Maps Demo</h3>
+                        <div class="main-dashboard grid-flex grid-width-100 pt-3">
+                            My Google Maps Demo
                         </div>
                         <div id="map-field" class="grid-flex grid-width-100 grid-height-100 pt-3 pr-2">
                             <?php
@@ -791,25 +794,89 @@ $this->registerJsFile('@web/js/format.js', ['depends' => [JqueryAsset::className
 //                                    'class' => 'map-container' // Map container html options.
 //                                ],
 //                            ])
-                            $coord = new LatLng(['lat' => 39.720089311812094, 'lng' => 2.91165944519042]);
+//                            $center = new LatLng(['lat' => 16.4918049, 'lng' => 102.8369424]);
+//                            $map = new Map([
+//                               'center' => $center,
+//                               'zoom' => 12,
+//                               'width' => '100%',
+//                               'height'=>'100%',
+//                                'containerOptions' => [
+//                                    'class' => 'my-map' // Map container html options.
+//                                ],
+//                            ]);
+//                            $coord = [
+//                                new LatLng(['lat' => 16.4918049, 'lng' => 102.8369424]),
+//                                new LatLng(['lat' => 16.4978149, 'lng' => 102.8369424]),
+//                                new LatLng(['lat' => 16.4998949, 'lng' => 102.8369424]),
+//                                new LatLng(['lat' => 16.5029349, 'lng' => 102.8469424]),
+//                            ];
+//                            foreach ($coord as $item) {
+//                                $marker = new Marker([
+//                                    'position' => $item,
+//                                    'title' => 'My Home Town',
+//                                ]);
+//                                $marker->attachInfoWindow(
+//                                    new InfoWindow([
+//                                        'content' => '<p>This is my super cool content</p>'
+//                                    ])
+//                                );
+//                                $label_options = array(
+//                                    'backgroundColor'=>'yellow',
+//                                    'opacity'=>'0.75',
+//                                    'width'=>'100px',
+//                                    'color'=>'blue'
+//                                );
+//                                $marker->labelStyle=$label_options;
+//                                $map->addOverlay($marker);
+//                            }
+
+//                            $polygon = new Polygon([
+//                                'paths' => $coord
+//                            ]);
+//
+//                            // Add a shared info window
+//                            $polygon->attachInfoWindow(new InfoWindow([
+//                                'content' => '<p>This is my super cool Polygon</p>'
+//                            ]));
+//
+//                            // Add it now to the map
+//                            $map->addOverlay($polygon);
                             $map = new Map([
-                               'center' => $coord,
-                               'zoom' => 14,
-                               'width' => '90%',
-                               'height'=>'450',
+                                'center' => new LatLng(['lat' => 15, 'lng' => 100]),
+                                'zoom' =>5,
+                                'width' => '100%',
+                                'height' => '100%',
+                                'containerOptions' => [
+                                    'id' => 'map-canvas',
+                                    'class' => 'my-map',
+                                ]
                             ]);
-                            $marker = new Marker([
-                               'position' => $coord,
-                               'title' => 'My Home Town',
-                            ]);
-                            $marker->attachInfoWindow(
-                               new InfoWindow([
-                                   'content' => '<p>This is my super cool content</p>'
-                               ])
-                            );
-                            $map->addOverlay($marker);
-                            echo $map->display()
-                           ?>
+                            foreach ($markers as $key => $val) {
+                                $marker = new Marker([
+                                    'position' => $val['lat_long'],
+                                    'title' => $val['place'],
+                                    'clickable' => true,
+                                    'icon' => '../image/hospital-locon.png',
+
+                                ]);
+                                $marker->attachInfoWindow(new InfoWindow(['content' => "
+                                    <h4><strong>{$val['place']}</strong></h4>
+                                    
+                                    <table class='table table-bordered'>
+                                        <tr>
+                                            <td>Latitude/Longitude</td>
+                                            <td>{$val['lat_long']}</td>
+                                        </tr>
+                                    </table>
+                                           
+                                    "]));
+                                $map->addOverlay($marker);
+                            }
+                            $map->center = $map->getMarkersCenterCoordinates();//กำหนดให้แผนที่อยู่ตรงกลางใน Marker
+                            //$map->zoom = $map->getMarkersFittingZoom() - 1; set zoom (someshit!!)
+
+                            echo $map->display();
+                            ?>
 
                         </div>
                     </div>
@@ -879,8 +946,19 @@ $this->registerJsFile('@web/js/format.js', ['depends' => [JqueryAsset::className
 
 <?php JSRegister::begin() ?>
 <script>
-    $(document).delegate('.manage-dropdown', 'click', function () {
+    var checkToggleOverview = 0
+    var checkToggleReport = 0
+    // $(document).delegate('.manage-dropdown', 'click', function () {
+    //     $(this).toggleClass('show-dropdown');
+    //     checkToggle += 1
+    // });
+    $(document).delegate('.dropdown-overview', 'click', function () {
         $(this).toggleClass('show-dropdown');
+        checkToggleOverview += 1
+    });
+    $(document).delegate('.dropdown-report', 'click', function () {
+        $(this).toggleClass('show-dropdown');
+        checkToggleReport += 1
     });
     $(document).delegate('.fake-checkbox', 'click', function () {
         $(this).toggleClass('open-checkpoint');
@@ -1035,11 +1113,42 @@ $this->registerJsFile('@web/js/format.js', ['depends' => [JqueryAsset::className
         let data_index = $(this).attr('data-index');
         //set first menu-active small menu when change menu header
         if (data_index === '0'){
+            //set report page
             $('.menu-dashboard-report').removeClass('menu-active');
             $('.menu-dashboard-report-first').addClass('menu-active')
             $('.switch-tab-view-small').css('left', '0' + 'px')
+            // check if ปิด toggle dropdow
+            if (checkToggleReport % 2 == 1){
+                $('.dropdown-report').toggleClass('show-dropdown');
+                checkToggleReport += 1
+            }
         }
         else if(data_index === '1'){
+            //set overview page
+            $('.menu-dashboard-overview').removeClass('menu-active');
+            $('.menu-dashboard-overview-first').addClass('menu-active')
+
+            if (checkToggleOverview % 2 == 1){
+                $('.dropdown-overview').toggleClass('show-dropdown');
+                checkToggleOverview += 1
+            }
+        }
+        else if (data_index === '2'){
+            //set report page
+            $('.menu-dashboard-report').removeClass('menu-active');
+            $('.menu-dashboard-report-first').addClass('menu-active')
+            $('.switch-tab-view-small').css('left', '0')
+
+            if (checkToggleOverview % 2 == 1){
+                $('.dropdown-overview').toggleClass('show-dropdown');
+                checkToggleOverview += 1
+            }
+            if (checkToggleReport % 2 == 1){
+                $('.dropdown-report').toggleClass('show-dropdown');
+                checkToggleReport += 1
+            }
+            // $('.select-menu').css('visibility','hidden')
+            //set overview page
             $('.menu-dashboard-overview').removeClass('menu-active');
             $('.menu-dashboard-overview-first').addClass('menu-active')
         }
