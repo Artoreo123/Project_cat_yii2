@@ -1,0 +1,76 @@
+.testttt{
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+.testttt2{
+    display: flex;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+}
+.testttt2:hover{
+    background: #f0f0f0;
+}
+.select-menu-test{
+    position: absolute;
+    top : 30px;
+    right: 0;
+    width: 200px;
+    visibility: hidden;
+    padding: 3px 0;
+    box-shadow: 2px 6px 14px 0 #f7f1f1;
+    border: 1px solid #c9c9c9;
+    background: white;
+    transition: .3s;
+}
+.show-menu .select-menu-test{
+    visibility: visible;
+    cursor: pointer;
+    /*color: #53aca3;*/
+}
+.in-menu{
+    padding: 3px 0 3px 15px;
+
+}
+.in-menu:hover{
+    background: #f0f0f0;
+}
+.active {
+    background: #d9d9d9;
+}
+.search{
+    width: 200px;
+
+
+}
+.input-search{
+    padding: 5px 30px;
+    border-radius: 5px;
+}
+.search .icon-search{
+    position: absolute;
+    left: 1rem;
+    cursor: pointer;
+    top: 8px;
+    color: #7d7d7d;
+}
+.when-click{
+    position: relative;
+}
+.label-search{
+    color: #444;
+    font-size: 14px;
+}
+.default-div{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #f5f5f5;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+.display-none{
+    display: none;
+}

@@ -231,7 +231,6 @@ $this->registerCssFile('https://fonts.googleapis.com/css?family=Fira+Sans+Conden
             </div>
         <?php } ?>
 
-
         <?php Pjax::end(); ?>
 
     </div>

@@ -30,7 +30,6 @@ class LocationInputHelper extends InputWidget
     public $searchInputOptions = [];
     public $disableLocationPicker = 0;
 
-
     public function init()
     {
         parent::init();
@@ -110,10 +109,7 @@ class LocationInputHelper extends InputWidget
         } else {
             $position = $this->value;
         }
-
-
         $markerOptions = Json::encode($this->markerOptions);
-
         $searchInputId = $this->searchInputOptions['id'];
         $js = <<<JS
 let map;
@@ -192,7 +188,6 @@ function initMap(positionMap = false) {
         var searchBox = new google.maps.places.SearchBox(input);
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
         
-
         // Bias the SearchBox results towards current map's viewport.
         map.addListener('bounds_changed', function() {
             searchBox.setBounds(map.getBounds());
@@ -267,6 +262,4 @@ JS;
         $this->getView()->registerJsFile('https://maps.googleapis.com/maps/api/js?key=' . $this->apiKey . '&libraries=places' . '&callback=geoLocation',
             ['async' => true, 'defer' => true]);
     }
-
-
 }

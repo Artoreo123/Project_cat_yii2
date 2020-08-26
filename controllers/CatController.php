@@ -262,7 +262,24 @@ class CatController extends Controller
     }
 
     public function actionTest(){
-        return $this->render('test');
+        $data = Order::allDataOrder();
+        $dataTypeCat = Order::getTypeCat();
+        $dataMoney = Order::getDataForSummaryRevenue();
+        $dataMoney = Json::encode($dataMoney);
+
+        $dataTypeCatV2 = Helper::convertDataTypeCat($dataTypeCat);
+        $dataTypeCatV2 = Json::encode($dataTypeCatV2);
+
+        $dataConvert = Helper::convertData($data);
+        $dataConvert = Json::encode($dataConvert);
+
+
+//        return $dataMoney;
+        return $this->render('test', [
+            'dataOrder' => $dataConvert,
+            'dataTypeCat' => $dataTypeCatV2,
+            'dataMoney' => $dataMoney,
+        ]);
     }
     public function actionDashboard()
     {

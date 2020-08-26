@@ -828,7 +828,28 @@ $this->registerJsFile('@web/js/format.js', ['depends' => [JqueryAsset::className
 //                                );
 //                                $marker->labelStyle=$label_options;
 //                                $map->addOverlay($marker);
-//                            }
+//                            } $form->field($model, 'map')->widget(LocationInputHelper::className(), [
+                            //                                'apiKey' => 'AIzaSyD34mcvNb4JwQf15HrIQkNuygTvX8zhnec&language=th',
+                            //                                'name' => 'User',
+                            //                                'searchInputOptions' => [
+                            //                                    'placeholder' => 'ค้นหาตำแหน่ง...'
+                            //                                ],
+                            //                                'mapOptions' => [
+                            //                                    'center' => ['lat' => 13.777234, 'lng' => 100.561981],
+                            //                                    'zoom' => 6,
+                            //                                    // Other google map options.
+                            //                                ],
+                            //                                'markerOptions' => [
+                            //                                    'draggable' => true,
+                            //                                    // Other google map maker options.
+                            //                                ],
+                            //                                'disableLocationPicker' => 0, // Or 1 to define input become enabled or not to use just map view.
+                            //                                'width' => '100%', // Map container width
+                            //                                'height' => '300px', // Map container height
+                            //                                'containerOptions' => [
+                            //                                    'class' => 'map-container' // Map container html options.
+                            //                                ],
+                            //                            ])->label(false)
 
 //                            $polygon = new Polygon([
 //                                'paths' => $coord
@@ -1105,8 +1126,6 @@ $this->registerJsFile('@web/js/format.js', ['depends' => [JqueryAsset::className
         tabSwicth()
         tabSwicthSmallMenuOverview()
         tabSwicthSmallMenu()
-
-
     })
     // menu active header
     $(document).delegate('.menu-item', 'click', function () {
